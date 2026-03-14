@@ -32,42 +32,48 @@ export default function TradeScreen() {
     });
   };
 
-  // Command 1: เช็คเทรด
+  const formatInterval = (seconds: number): string => {
+    if (seconds < 60) return `${seconds} ${t('seconds')}`;
+    if (seconds < 3600) return `${seconds / 60} ${t('minutes')}`;
+    return `${seconds / 3600} ${t('hours')}`;
+  };
+
   const handleCheckTrade = async () => {
     if (!isFullyConnected) {
-      Alert.alert('⚠️', t('pleaseSetup'));
+      Alert.alert(`⚠️ ${t('warning')}`, t('pleaseSetup'));
       return;
     }
     setLoading('check');
     try {
       const result = await metaApiService.checkTrade(state.tradingPair);
       setLastCheck(result);
-      notifyChat(`📊 ผลการเช็คเทรด ${state.tradingPair}\n\n${result.details}\n\n${result.canTrade ? '✅ พร้อมเทรด' : '⏸️ ยังไม่ควรเทรด'}\n\nSignal: ${result.signalStrength}/10\nTrend: ${result.trend}\nEntry: ${result.entry.toFixed(2)}\nSL: ${result.sl.toFixed(2)}\nTP: ${result.tp.toFixed(2)}\nLot: ${result.lotSize}\nR/R: ${result.riskReward.toFixed(2)}:1`);
+      notifyChat(
+        `📊 ${t('checkTrade')} ${state.tradingPair}\n\n${result.details}\n\n${result.canTrade ? `✅ ${t('connected')}` : `⏸️ ${t('notReady')}`}\n\nSignal: ${result.signalStrength}/10\nTrend: ${result.trend}\nEntry: ${result.entry.toFixed(2)}\nSL: ${result.sl.toFixed(2)}\nTP: ${result.tp.toFixed(2)}\nLot: ${result.lotSize}\nR/R: ${result.riskReward.toFixed(2)}:1`
+      );
     } catch (e: any) {
-      Alert.alert('❌', `เช็คเทรดไม่สำเร็จ: ${e.message}`);
-      notifyChat(`❌ เช็คเทรดไม่สำเร็จ: ${e.message}`);
+      Alert.alert(`❌ ${t('error')}`, `${t('tradeFailed')}: ${e.message}`);
+      notifyChat(`❌ ${t('tradeFailed')}: ${e.message}`);
     }
     setLoading(null);
   };
 
-  // Command 2: อนุมัติเทรด
   const handleApproveTrade = async () => {
     if (!lastCheck) {
-      Alert.alert('⚠️', 'กรุณาเช็คเทรดก่อน');
+      Alert.alert(`⚠️ ${t('warning')}`, t('checkFirst'));
       return;
     }
     if (!lastCheck.canTrade) {
-      Alert.alert('⚠️', `ไม่สามารถเทรดได้: ${lastCheck.actionNote}`);
+      Alert.alert(`⚠️ ${t('warning')}`, `${t('notReady')}: ${lastCheck.actionNote}`);
       return;
     }
 
     Alert.alert(
-      '📊 ยืนยันการเทรด',
+      `📊 ${t('confirmTrade')}`,
       `${lastCheck.signalType} ${state.tradingPair}\nEntry: ${lastCheck.entry.toFixed(2)}\nSL: ${lastCheck.sl.toFixed(2)}\nTP: ${lastCheck.tp.toFixed(2)}\nLot: ${lastCheck.lotSize}\nSignal: ${lastCheck.signalStrength}/10`,
       [
-        { text: 'ยกเลิก', style: 'cancel' },
+        { text: t('cancel'), style: 'cancel' },
         {
-          text: 'อนุมัติเทรด',
+          text: t('approveTrade'),
           style: 'destructive',
           onPress: async () => {
             setLoading('approve');
@@ -80,14 +86,14 @@ export default function TradeScreen() {
                 lastCheck.tp
               );
               if (result.success) {
-                notifyChat(`✅ เทรดสำเร็จ!\n${result.message}`);
-                Alert.alert('✅', result.message);
+                notifyChat(`✅ ${t('tradeSuccess')}!\n${result.message}`);
+                Alert.alert(`✅ ${t('success')}`, result.message);
               } else {
-                notifyChat(`❌ เทรดไม่สำเร็จ: ${result.message}`);
-                Alert.alert('❌', result.message);
+                notifyChat(`❌ ${t('tradeFailed')}: ${result.message}`);
+                Alert.alert(`❌ ${t('error')}`, result.message);
               }
             } catch (e: any) {
-              notifyChat(`❌ เกิดข้อผิดพลาด: ${e.message}`);
+              notifyChat(`❌ ${t('error')}: ${e.message}`);
             }
             setLoading(null);
           },
@@ -96,20 +102,19 @@ export default function TradeScreen() {
     );
   };
 
-  // Command 3: ตั้งเวลาเทรดอัตโนมัติ
   const handleStartAutoTrade = () => {
     if (!isFullyConnected) {
-      Alert.alert('⚠️', t('pleaseSetup'));
+      Alert.alert(`⚠️ ${t('warning')}`, t('pleaseSetup'));
       return;
     }
 
     Alert.alert(
-      '⏰ ตั้งเวลาเทรดอัตโนมัติ',
-      `ระบบจะเช็คเทรดทุกๆ ${formatInterval(state.autoTradeInterval)}\nคู่เทรด: ${state.tradingPair}\n\nถ้าเงื่อนไขผ่าน จะส่งคำสั่งซื้อขายอัตโนมัติ`,
+      `⏰ ${t('setAutoTrade')}`,
+      `${t('autoCheckEvery')} ${formatInterval(state.autoTradeInterval)}\n${t('tradingPair')}: ${state.tradingPair}\n\n${t('setAutoTradeDesc')}`,
       [
-        { text: 'ยกเลิก', style: 'cancel' },
+        { text: t('cancel'), style: 'cancel' },
         {
-          text: 'เริ่มเทรดอัตโนมัติ',
+          text: t('setAutoTrade'),
           onPress: () => {
             setIsAutoTrading(true);
             const intervalMs = state.autoTradeInterval * 1000;
@@ -126,59 +131,49 @@ export default function TradeScreen() {
                   );
                   notifyChat(`🤖 [Auto] ${tradeResult.success ? '✅' : '❌'} ${tradeResult.message}`);
                 } else {
-                  notifyChat(`🤖 [Auto] ⏸️ ${result.actionNote} - รอรอบถัดไป`);
+                  notifyChat(`🤖 [Auto] ⏸️ ${result.actionNote}`);
                 }
               } catch (e: any) {
-                notifyChat(`🤖 [Auto] ❌ Error: ${e.message}`);
+                notifyChat(`🤖 [Auto] ❌ ${t('error')}: ${e.message}`);
               }
             }, intervalMs);
-            notifyChat(`⏰ เริ่มเทรดอัตโนมัติแล้ว\nเช็คทุกๆ ${formatInterval(state.autoTradeInterval)}\nคู่เทรด: ${state.tradingPair}`);
+            notifyChat(`⏰ ${t('autoTradeStarted')}\n${t('autoCheckEvery')} ${formatInterval(state.autoTradeInterval)}\n${t('tradingPair')}: ${state.tradingPair}`);
           },
         },
       ]
     );
   };
 
-  // Command 4: ยกเลิกการตั้งเวลาเทรด
   const handleStopAutoTrade = () => {
     if (autoTradeRef.current) {
       clearInterval(autoTradeRef.current);
       autoTradeRef.current = null;
     }
     setIsAutoTrading(false);
-    notifyChat('🛑 ยกเลิกการตั้งเวลาเทรดอัตโนมัติแล้ว');
-    Alert.alert('🛑', 'ยกเลิกการตั้งเวลาเทรดอัตโนมัติแล้ว');
-  };
-
-  const formatInterval = (seconds: number): string => {
-    if (seconds < 60) return `${seconds} วินาที`;
-    if (seconds < 3600) return `${seconds / 60} นาที`;
-    return `${seconds / 3600} ชั่วโมง`;
+    notifyChat(`🛑 ${t('autoTradeStopped')}`);
+    Alert.alert(`🛑 ${t('cancelAutoTrade')}`, t('autoTradeStopped'));
   };
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      {/* Connection status */}
       <View style={styles.statusCard}>
         <View style={styles.statusRow}>
           <View style={[styles.statusDot, isFullyConnected ? styles.dotGreen : styles.dotRed]} />
           <Text style={styles.statusText}>
-            {isFullyConnected ? 'เชื่อมต่อแล้ว' : 'ยังไม่ได้เชื่อมต่อ'}
+            {isFullyConnected ? t('connected') : t('disconnected')}
           </Text>
         </View>
-        <Text style={styles.pairText}>คู่เทรด: {state.tradingPair}</Text>
+        <Text style={styles.pairText}>{t('tradingPair')}: {state.tradingPair}</Text>
         {state.isAutoTrading && (
           <View style={styles.autoIndicator}>
             <ActivityIndicator size="small" color={Colors.success} />
-            <Text style={styles.autoText}>🤖 เทรดอัตโนมัติทำงานอยู่</Text>
+            <Text style={styles.autoText}>🤖 {t('autoTrading')}</Text>
           </View>
         )}
       </View>
 
-      {/* Trading Commands */}
-      <Text style={styles.sectionTitle}>📋 คำสั่งเทรด</Text>
+      <Text style={styles.sectionTitle}>📋 {t('trade')}</Text>
 
-      {/* Command 1: เช็คเทรด */}
       <TouchableOpacity
         style={[styles.commandButton, styles.checkButton]}
         onPress={handleCheckTrade}
@@ -190,14 +185,13 @@ export default function TradeScreen() {
           <>
             <Ionicons name="search" size={24} color="#fff" />
             <View style={styles.cmdTextContainer}>
-              <Text style={styles.cmdTitle}>🔍 เช็คเทรด</Text>
-              <Text style={styles.cmdDesc}>วิเคราะห์ตลาดและให้คำแนะนำ (STEP 0-9)</Text>
+              <Text style={styles.cmdTitle}>🔍 {t('checkTrade')}</Text>
+              <Text style={styles.cmdDesc}>{t('checkTradeDesc')}</Text>
             </View>
           </>
         )}
       </TouchableOpacity>
 
-      {/* Command 2: อนุมัติเทรด */}
       <TouchableOpacity
         style={[styles.commandButton, styles.approveButton, !lastCheck?.canTrade && styles.buttonDisabled]}
         onPress={handleApproveTrade}
@@ -209,14 +203,13 @@ export default function TradeScreen() {
           <>
             <Ionicons name="checkmark-circle" size={24} color="#fff" />
             <View style={styles.cmdTextContainer}>
-              <Text style={styles.cmdTitle}>✅ อนุมัติเทรด</Text>
-              <Text style={styles.cmdDesc}>ส่งคำสั่งซื้อขายตามคำแนะนำ</Text>
+              <Text style={styles.cmdTitle}>✅ {t('approveTrade')}</Text>
+              <Text style={styles.cmdDesc}>{t('approveTradeDesc')}</Text>
             </View>
           </>
         )}
       </TouchableOpacity>
 
-      {/* Command 3: ตั้งเวลาเทรดอัตโนมัติ */}
       <TouchableOpacity
         style={[styles.commandButton, styles.autoButton, state.isAutoTrading && styles.buttonDisabled]}
         onPress={handleStartAutoTrade}
@@ -224,12 +217,11 @@ export default function TradeScreen() {
       >
         <Ionicons name="time" size={24} color="#fff" />
         <View style={styles.cmdTextContainer}>
-          <Text style={styles.cmdTitle}>⏰ ตั้งเวลาเทรดอัตโนมัติ</Text>
-          <Text style={styles.cmdDesc}>เช็คทุกๆ {formatInterval(state.autoTradeInterval)}</Text>
+          <Text style={styles.cmdTitle}>⏰ {t('setAutoTrade')}</Text>
+          <Text style={styles.cmdDesc}>{t('autoCheckEvery')} {formatInterval(state.autoTradeInterval)}</Text>
         </View>
       </TouchableOpacity>
 
-      {/* Command 4: ยกเลิกการตั้งเวลาเทรด */}
       <TouchableOpacity
         style={[styles.commandButton, styles.cancelButton, !state.isAutoTrading && styles.buttonDisabled]}
         onPress={handleStopAutoTrade}
@@ -237,15 +229,14 @@ export default function TradeScreen() {
       >
         <Ionicons name="close-circle" size={24} color="#fff" />
         <View style={styles.cmdTextContainer}>
-          <Text style={styles.cmdTitle}>🛑 ยกเลิกการตั้งเวลาเทรด</Text>
-          <Text style={styles.cmdDesc}>หยุดระบบเทรดอัตโนมัติ</Text>
+          <Text style={styles.cmdTitle}>🛑 {t('cancelAutoTrade')}</Text>
+          <Text style={styles.cmdDesc}>{t('cancelAutoTradeDesc')}</Text>
         </View>
       </TouchableOpacity>
 
-      {/* Last check result */}
       {lastCheck && (
         <View style={styles.resultCard}>
-          <Text style={styles.resultTitle}>📊 ผลการวิเคราะห์ล่าสุด</Text>
+          <Text style={styles.resultTitle}>📊 {t('status')}</Text>
           <View style={styles.resultGrid}>
             <ResultItem label="Trend" value={lastCheck.trend} color={lastCheck.trend === 'UP' ? Colors.success : Colors.error} />
             <ResultItem label="Signal" value={`${lastCheck.signalStrength}/10`} color={lastCheck.signalStrength >= 7 ? Colors.success : lastCheck.signalStrength >= 4 ? Colors.warning : Colors.error} />
@@ -254,7 +245,7 @@ export default function TradeScreen() {
             <ResultItem label="TP" value={lastCheck.tp.toFixed(2)} color={Colors.success} />
             <ResultItem label="Lot" value={`${lastCheck.lotSize}`} />
             <ResultItem label="R/R" value={`${lastCheck.riskReward.toFixed(2)}:1`} />
-            <ResultItem label="Status" value={lastCheck.canTrade ? '✅ READY' : '⏸️ WAIT'} color={lastCheck.canTrade ? Colors.success : Colors.warning} />
+            <ResultItem label={t('status')} value={lastCheck.canTrade ? '✅ READY' : '⏸️ WAIT'} color={lastCheck.canTrade ? Colors.success : Colors.warning} />
           </View>
         </View>
       )}

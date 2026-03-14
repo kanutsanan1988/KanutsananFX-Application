@@ -19,6 +19,7 @@ export const TRANSLATION_KEYS = [
   // Guide
   'guideMetaApi', 'guideAiProvider', 'guideTradingSkills', 'guideCommands',
   'selectGuide', 'back',
+  'guideMetaApiContent', 'guideAiProviderContent', 'guideTradingSkillsContent', 'guideCommandsContent',
   // Notifications
   'noInternet', 'setupRequired', 'close',
   // Time
@@ -33,17 +34,40 @@ export const TRANSLATION_KEYS = [
   'currentSetting', 'refreshPairs', 'connectMetaApiFirst',
   // Developer
   'developerName', 'developerTitle', 'developerBio', 'developerQuote',
-  'linksAndContacts', 'sourceCodeRef', 'youtubeRef',
+  'developerLinks', 'sourceCodeReference', 'youtubeReferences',
+  'videoOne', 'videoTwo',
+  'developerLinkChat', 'developerLinkLoveMoneyAi', 'developerLinkYoutubeOfficial',
+  'developerLinkFacebookPage', 'developerLinkLokathibodi', 'developerLinkGardenMain',
+  'developerLinkGardenActivities', 'developerLinkRiceTrade', 'developerLinkGrassTrade',
+  'developerLinkEnergyGroup', 'developerLinkPropertyGroup',
   // Language
   'language', 'selectLanguage', 'languageName',
   // Setup
   'setupTitle', 'setupDesc', 'step1MetaApi', 'step2AiBrain', 'startUsing',
   'skipSetup', 'letsGo',
+  'setupStep', 'setupMetaApiDesc', 'setupAiBrainDesc',
+  'accountIdPlaceholder', 'connectMetaApi', 'connectAiBrain',
+  'viewGuide', 'backToMetaApi',
+  'connectionFailedDesc', 'pleaseEnterAiKey',
   // Reset
   'resetConnection', 'resetWarning', 'reset',
   // General
   'ok', 'confirm', 'warning', 'error', 'success', 'loading', 'retry',
   'comingSoon', 'version',
+  // AI responses (built-in mode)
+  'aiResponseCheckTrade', 'aiResponseApproveTrade', 'aiResponseAutoTrade',
+  'aiResponseCancelAuto', 'aiResponseDharma', 'aiResponseGreeting', 'aiResponseDefault',
+  'aiErrorGeneric', 'aiErrorConnection',
+  // Settings page additional
+  'darkMode', 'notifications', 'clearChatHistory', 'clearChatConfirm',
+  'exportSettings', 'importSettings',
+  'settingsMetaApiSection', 'settingsAiBrainSection', 'settingsLanguageSection',
+  'settingsBackupSection', 'settingsAboutSection',
+  // Trade screen additional
+  'tradeAnalysisResult', 'trendUp', 'trendDown', 'signalStrength',
+  'entryPrice', 'stopLoss', 'takeProfit', 'lotSize', 'riskReward',
+  'noAnalysisYet', 'analyzing', 'executing',
+  'autoTradeActive', 'autoTradeInactive',
 ] as const;
 
 export type TranslationKey = typeof TRANSLATION_KEYS[number];

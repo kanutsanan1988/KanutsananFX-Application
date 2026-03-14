@@ -9,6 +9,7 @@ interface NotificationPopupProps {
   title: string;
   message: string;
   onClose: () => void;
+  closeLabel?: string;
 }
 
 const ICONS: Record<string, string> = {
@@ -25,7 +26,7 @@ const ICON_COLORS: Record<string, string> = {
   info: Colors.accentGold,
 };
 
-export default function NotificationPopup({ visible, type, title, message, onClose }: NotificationPopupProps) {
+export default function NotificationPopup({ visible, type, title, message, onClose, closeLabel }: NotificationPopupProps) {
   const [fadeAnim] = useState(new Animated.Value(0));
 
   useEffect(() => {
@@ -53,7 +54,7 @@ export default function NotificationPopup({ visible, type, title, message, onClo
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.message}>{message}</Text>
         <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-          <Text style={styles.closeText}>ปิด</Text>
+          <Text style={styles.closeText}>{closeLabel || 'Close'}</Text>
         </TouchableOpacity>
       </View>
     </Animated.View>

@@ -19,7 +19,14 @@ export default function ChatScreen() {
       addChatMessage({
         id: 'welcome',
         role: 'assistant',
-        content: '🙏 สวัสดีครับ ผม KanutsananFX\n\nยินดีให้บริการครับ ผมสามารถช่วยคุณวิเคราะห์ตลาด Forex, ให้คำแนะนำการเทรด, หรือพูดคุยธรรมะได้ครับ\n\n📊 คำสั่งที่ใช้ได้:\n• "เช็คเทรด"\n• "อนุมัติเทรด"\n• "ตั้งเวลาเทรดอัตโนมัติ"\n• "ยกเลิกการตั้งเวลาเทรด"\n\nมีอะไรให้ช่วยครับ?',
+        content: [
+          `🙏 ${t('welcomeMessage')}`,
+          `${t('guideCommands')}:`,
+          `• "${t('checkTrade')}"`,
+          `• "${t('approveTrade')}"`,
+          `• "${t('setAutoTrade')}"`,
+          `• "${t('cancelAutoTrade')}"`,
+        ].join('\n\n'),
         timestamp: Date.now(),
       });
     }
@@ -59,7 +66,7 @@ export default function ChatScreen() {
       addChatMessage({
         id: `err_${Date.now()}`,
         role: 'assistant',
-        content: `❌ เกิดข้อผิดพลาด: ${e.message}`,
+        content: `❌ ${t('error')}: ${e.message}`,
         timestamp: Date.now(),
       });
     }
@@ -74,12 +81,15 @@ export default function ChatScreen() {
         {!isUser && (
           <View style={styles.aiHeader}>
             <Text style={styles.aiAvatar}>📊</Text>
-            <Text style={styles.aiName}>KanutsananFX</Text>
+            <Text style={styles.aiName}>{t('appName')}</Text>
           </View>
         )}
         <Text style={[styles.messageText, isUser && styles.userText]}>{item.content}</Text>
         <Text style={styles.timestamp}>
-          {new Date(item.timestamp).toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' })}
+          {new Date(item.timestamp).toLocaleTimeString(state.locale === 'zh-TW' ? 'zh-TW' : state.locale, {
+            hour: '2-digit',
+            minute: '2-digit',
+          })}
         </Text>
       </View>
     );
@@ -91,7 +101,6 @@ export default function ChatScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       keyboardVerticalOffset={90}
     >
-      {/* Status bar */}
       <View style={styles.statusBar}>
         <View style={[styles.statusDot, isFullyConnected ? styles.dotConnected : styles.dotDisconnected]} />
         <Text style={styles.statusText}>
@@ -99,7 +108,6 @@ export default function ChatScreen() {
         </Text>
       </View>
 
-      {/* Chat messages */}
       <FlatList
         ref={flatListRef}
         data={state.chatHistory}
@@ -109,7 +117,6 @@ export default function ChatScreen() {
         onContentSizeChange={() => flatListRef.current?.scrollToEnd({ animated: true })}
       />
 
-      {/* Loading indicator */}
       {isLoading && (
         <View style={styles.loadingBar}>
           <ActivityIndicator size="small" color={Colors.accentGold} />
@@ -117,7 +124,6 @@ export default function ChatScreen() {
         </View>
       )}
 
-      {/* Input bar */}
       <View style={styles.inputBar}>
         <TextInput
           style={styles.textInput}
@@ -129,7 +135,10 @@ export default function ChatScreen() {
           maxLength={2000}
           onSubmitEditing={handleSend}
         />
-        <TouchableOpacity style={styles.voiceButton} onPress={() => Alert.alert('🎤', 'ฟีเจอร์สนทนาด้วยเสียง - พร้อมใช้งานในเวอร์ชันถัดไป')}>
+        <TouchableOpacity
+          style={styles.voiceButton}
+          onPress={() => Alert.alert(`🎤 ${t('voiceInput')}`, t('voiceComingSoon'))}
+        >
           <Ionicons name="mic" size={22} color={Colors.textSecondary} />
         </TouchableOpacity>
         <TouchableOpacity

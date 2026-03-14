@@ -108,6 +108,147 @@ const ar: Record<TranslationKey, string> = {
   retry: 'أعد المحاولة',
   comingSoon: 'قريبًا',
   version: 'الإصدار',
+  guideMetaApiContent: '# دليل MetaAPI
+
+## الخطوة 1: تسجيل حساب MetaAPI
+- اذهب إلى https://app.metaapi.cloud
+- أنشئ حسابًا جديدًا أو سجل الدخول
+- تحقق من بريدك الإلكتروني
+
+## الخطوة 2: ربط حساب MT5
+- انقر على حساب جديد
+- حدد ربط حساب موجود
+- أدخل تفاصيل MT5: الخادم، تسجيل الدخول، كلمة المرور
+- انقر على إنشاء حساب
+
+## الخطوة 3: الحصول على معرف الحساب
+- بعد إنشاء الحساب، سترى معرف الحساب
+- انسخ معرف الحساب
+- أدخله في KanutsananFX
+
+## الخطوة 4: الحصول على مفتاح API
+- اذهب إلى الإعدادات ثم الوصول إلى API
+- أنشئ رمز API جديد
+- انسخ الرمز
+- أدخله في KanutsananFX
+
+## هام
+- لا تشارك مفتاح API الخاص بك أبدًا
+- استخدم المصادقة الثنائية للأمان"New Account"\n- Select "Connect existing account"\n- Enter MT5 details: Server, Login, Password\n- Click "Create Account"\n\n## Step 3: Get Account ID\n- After creating the account, you will see the Account ID\n- Copy the Account ID\n- Enter it in KanutsananFX\n\n## Step 4: Get API Key\n- Go to Settings → API Access\n- Create a new API Token\n- Copy the Token\n- Enter it in KanutsananFX\n\n## Important\n- Never share your API Key\n- Use 2FA for security',
+  guideAiProviderContent: '# دليل مزود الذكاء الاصطناعي
+
+## 1. KanutsananFX (افتراضي)
+- LLM مدمج، لا يلزم وجود مفتاح API
+
+## 2. OpenAI
+- الموقع: https://platform.openai.com
+
+## 3. Anthropic (Claude)
+- الموقع: https://console.anthropic.com
+
+## 4. Google Gemini
+- الموقع: https://aistudio.google.com
+
+## 5. Grok (xAI)
+- الموقع: https://console.x.ai
+
+## 6. Perplexity
+- الموقع: https://www.perplexity.ai/settings/api
+
+## 7. OpenRouter
+- الموقع: https://openrouter.ai',
+  guideTradingSkillsContent: '# دليل مهارات التداول
+
+## فترات التحقق التلقائي
+- 30 ثانية - الأكثر تكرارًا
+- 1-10 دقائق - معتدل
+- 1-5 ساعات - الأقل تكرارًا
+
+## نظام التحليل STEP 0-9
+- STEP 0: التحقق من فتح/إغلاق السوق
+- STEP 1: السعر الحالي
+- STEP 2: تحليل الرسم البياني M15
+- STEP 3: حساب SL/TP
+- STEP 4: التحقق من المخاطرة/العائد
+- STEP 5: حساب حجم المركز
+- STEP 6: تقييم قوة الإشارة
+- STEP 7: التحقق من الاتجاه
+- STEP 8: التحقق من API
+- STEP 9: التحقق من المراكز الحالية',
+  guideCommandsContent: '# دليل الأوامر
+
+## 1. فحص الصفقة
+- تحليل السوق باستخدام STEP 0-9
+- عرض نتائج التحليل
+
+## 2. الموافقة على الصفقة
+- تنفيذ الصفقة بناءً على التحليل
+
+## 3. ضبط التداول التلقائي
+- التحقق والتداول تلقائيًا وفقًا لجدول زمني
+
+## 4. إلغاء التداول التلقائي
+- إيقاف التداول التلقائي فورًا',
+  developerLinks: 'روابط وجهات اتصال',
+  sourceCodeReference: 'مرجع الكود المصدري',
+  youtubeReferences: 'مراجع فيديو يوتيوب',
+  videoOne: 'فيديو 1',
+  videoTwo: 'فيديو 2',
+  developerLinkChat: 'الدردشة مع المطور LoveMoney AI',
+  developerLinkLoveMoneyAi: 'LoveMoney AI على ChatGPT',
+  developerLinkYoutubeOfficial: 'قناة يوتيوب LoveMoney الرسمية',
+  developerLinkFacebookPage: 'صفحة فيسبوك LoveMoney',
+  developerLinkLokathibodi: 'نص لوكاثيبودي',
+  developerLinkGardenMain: 'حديقة الدارما للجدارة',
+  developerLinkGardenActivities: 'أنشطة حديقة الدارما',
+  developerLinkRiceTrade: 'مجموعة تداول الأرز عبر الإنترنت',
+  developerLinkGrassTrade: 'مجموعة تداول عشب بانجولا',
+  developerLinkEnergyGroup: 'مجموعة الطاقة ذاتية التكرير',
+  developerLinkPropertyGroup: 'مجموعة تداول العقارات',
+  setupStep: 'خطوة',
+  setupMetaApiDesc: 'أدخل معرف الحساب ومفتاح API من MetaAPI لربط حساب تداول MT5 الخاص بك',
+  setupAiBrainDesc: 'حدد مزود ذكاء اصطناعي للتحليل والمحادثة',
+  accountIdPlaceholder: 'أدخل معرف حساب MetaAPI',
+  connectMetaApi: 'ربط MetaAPI',
+  connectAiBrain: 'ربط دماغ الذكاء الاصطناعي',
+  viewGuide: 'عرض الدليل',
+  backToMetaApi: 'العودة إلى إعداد MetaAPI',
+  connectionFailedDesc: 'يرجى التحقق من معرف الحساب ومفتاح API. راجع قائمة الدليل للمساعدة.',
+  pleaseEnterAiKey: 'يرجى إدخال مفتاح API لمزود الذكاء الاصطناعي المحدد',
+  aiResponseCheckTrade: 'جاري تحليل السوق... يرجى استخدام زر فحص الصفقة على شاشة التداول للتحليل في الوقت الفعلي من MetaAPI.',
+  aiResponseApproveTrade: 'يرجى استخدام زر الموافقة على الصفقة على شاشة التداول بعد فحص الصفقة. سيقوم النظام بتنفيذ الأوامر بناءً على التحليل.',
+  aiResponseAutoTrade: 'يرجى تكوين توقيت التداول التلقائي في مهارات التداول أولاً، ثم الضغط على ضبط التداول التلقائي على شاشة التداول.',
+  aiResponseCancelAuto: 'يرجى الضغط على زر إلغاء التداول التلقائي على شاشة التداول.',
+  aiResponseDharma: 'الدارما ضرورية في الحياة. التداول هو نفسه - يتطلب اليقظة والتركيز وعدم الجشع وعدم الغضب. أناباناساتي (الوعي بالتنفس) أساس رائع لتهدئة العقل.',
+  aiResponseGreeting: 'مرحبًا! أنا KanutsananFX، يسعدني خدمتك. يمكنني مساعدتك في تحليل سوق الفوركس، وتوصيات التداول، وتخصيص مهارات التداول، ومناقشة الدارما والأنظمة المالية العالمية.',
+  aiResponseDefault: 'شكرًا لك على رسالتك. أنا KanutsananFX، على استعداد لمساعدتك في تداول الفوركس ومناقشات الدارما. يمكنك استخدام الأوامر: فحص الصفقة، الموافقة على الصفقة، ضبط التداول التلقائي، إلغاء التداول التلقائي.',
+  aiErrorGeneric: 'عذرًا، لا يمكن الرد في هذا الوقت.',
+  aiErrorConnection: 'حدث خطأ. يرجى التحقق من مفتاح API واتصال الإنترنت.',
+  darkMode: 'الوضع الداكن',
+  notifications: 'الإشعارات',
+  clearChatHistory: 'مسح سجل الدردشة',
+  clearChatConfirm: 'هل تريد مسح كل سجل الدردشة؟',
+  exportSettings: 'تصدير الإعدادات',
+  importSettings: 'استيراد الإعدادات',
+  settingsMetaApiSection: 'MetaAPI',
+  settingsAiBrainSection: 'دماغ الذكاء الاصطناعي',
+  settingsLanguageSection: 'اللغة',
+  settingsBackupSection: 'النسخ الاحتياطي/الاستعادة',
+  settingsAboutSection: 'حول',
+  tradeAnalysisResult: 'نتيجة التحليل',
+  trendUp: 'اتجاه صاعد',
+  trendDown: 'اتجاه هابط',
+  signalStrength: 'قوة الإشارة',
+  entryPrice: 'سعر الدخول',
+  stopLoss: 'Stop Loss',
+  takeProfit: 'Take Profit',
+  lotSize: 'Lot Size',
+  riskReward: 'Risk/Reward',
+  noAnalysisYet: 'لا يوجد تحليل بعد',
+  analyzing: 'جاري التحليل...',
+  executing: 'جاري التنفيذ...',
+  autoTradeActive: 'التداول التلقائي نشط',
+  autoTradeInactive: 'التداول التلقائي غير نشط',
 };
 
 export default ar;

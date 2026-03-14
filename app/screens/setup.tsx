@@ -7,14 +7,14 @@ import { useRouter } from 'expo-router';
 import { useApp, AiProvider } from '../context/AppContext';
 import { Colors, FontSize, Spacing, BorderRadius } from '../constants/theme';
 
-const AI_PROVIDERS: { id: AiProvider; name: string; description: string }[] = [
-  { id: 'kanutsananfx', name: 'KanutsananFX', description: 'LLM ภายใน (ค่าเริ่มต้น - ไม่ต้องกรอก API Key)' },
-  { id: 'openai', name: 'OpenAI', description: 'GPT-4o-mini' },
-  { id: 'anthropic', name: 'Anthropic', description: 'Claude 3 Haiku' },
-  { id: 'gemini', name: 'Google Gemini', description: 'Gemini Pro' },
-  { id: 'grok', name: 'Grok', description: 'Grok-2 by xAI' },
-  { id: 'perplexity', name: 'Perplexity', description: 'Llama 3.1 Sonar' },
-  { id: 'openrouter', name: 'OpenRouter', description: 'Auto Model Selection' },
+const AI_PROVIDERS: { id: AiProvider; name: string; desc: string }[] = [
+  { id: 'kanutsananfx', name: 'KanutsananFX', desc: 'Built-in LLM (No API Key needed)' },
+  { id: 'openai', name: 'OpenAI', desc: 'GPT-4o-mini' },
+  { id: 'anthropic', name: 'Anthropic', desc: 'Claude 3 Haiku' },
+  { id: 'gemini', name: 'Google Gemini', desc: 'Gemini Pro' },
+  { id: 'grok', name: 'Grok', desc: 'Grok-2 by xAI' },
+  { id: 'perplexity', name: 'Perplexity', desc: 'Llama 3.1 Sonar' },
+  { id: 'openrouter', name: 'OpenRouter', desc: 'Auto Model Selection' },
 ];
 
 export default function SetupScreen() {
@@ -30,7 +30,7 @@ export default function SetupScreen() {
 
   const handleMetaApiConnect = async () => {
     if (!accountId.trim() || !apiKey.trim()) {
-      Alert.alert('⚠️', 'กรุณากรอก Account ID และ API Key');
+      Alert.alert(t('warning'), t('pleaseSetup'));
       return;
     }
     setLoading(true);
@@ -40,11 +40,11 @@ export default function SetupScreen() {
       setStep(2);
     } else {
       Alert.alert(
-        '❌ เชื่อมต่อไม่สำเร็จ',
-        'กรุณาตรวจสอบ Account ID และ API Key\n\nดูคู่มือได้ที่เมนู "คู่มือ"',
+        t('connectionFailed'),
+        t('connectionFailedDesc'),
         [
-          { text: 'ลองใหม่', style: 'cancel' },
-          { text: 'ข้ามไปก่อน', onPress: () => setStep(2) },
+          { text: t('retry'), style: 'cancel' },
+          { text: t('skipSetup'), onPress: () => setStep(2) },
         ]
       );
     }
@@ -52,7 +52,7 @@ export default function SetupScreen() {
 
   const handleAiConnect = async () => {
     if (selectedProvider !== 'kanutsananfx' && !aiApiKey.trim()) {
-      Alert.alert('⚠️', 'กรุณากรอก API Key สำหรับผู้ให้บริการ AI ที่เลือก');
+      Alert.alert(t('warning'), t('pleaseEnterAiKey'));
       return;
     }
     setLoading(true);
@@ -61,7 +61,7 @@ export default function SetupScreen() {
     if (success) {
       router.replace('/(tabs)/chat');
     } else {
-      Alert.alert('❌', 'เชื่อมต่อไม่สำเร็จ กรุณาตรวจสอบ API Key');
+      Alert.alert(t('error'), t('connectionFailed'));
     }
   };
 
@@ -75,32 +75,30 @@ export default function SetupScreen() {
         <Text style={styles.logo}>📊</Text>
         <Text style={styles.title}>KanutsananFX</Text>
         <Text style={styles.stepIndicator}>
-          ขั้นตอนที่ {step} จาก 2
+          {t('setupStep')} {step} / 2
         </Text>
 
         {step === 1 ? (
           <View style={styles.card}>
-            <Text style={styles.cardTitle}>🔗 ตั้งค่า MetaAPI</Text>
-            <Text style={styles.cardDesc}>
-              กรอก Account ID และ API Key จาก MetaAPI เพื่อเชื่อมต่อกับบัญชีเทรด MT5
-            </Text>
+            <Text style={styles.cardTitle}>{t('step1MetaApi')}</Text>
+            <Text style={styles.cardDesc}>{t('setupMetaApiDesc')}</Text>
 
-            <Text style={styles.label}>Account ID</Text>
+            <Text style={styles.label}>{t('accountId')}</Text>
             <TextInput
               style={styles.input}
               value={accountId}
               onChangeText={setAccountId}
-              placeholder="กรอก MetaAPI Account ID"
+              placeholder={t('accountIdPlaceholder')}
               placeholderTextColor={Colors.textMuted}
               autoCapitalize="none"
             />
 
-            <Text style={styles.label}>API Key (Token)</Text>
+            <Text style={styles.label}>{t('apiKey')} (Token)</Text>
             <TextInput
               style={styles.input}
               value={apiKey}
               onChangeText={setApiKey}
-              placeholder="กรอก MetaAPI API Key"
+              placeholder={t('apiKeyPlaceholder')}
               placeholderTextColor={Colors.textMuted}
               autoCapitalize="none"
               secureTextEntry
@@ -114,20 +112,18 @@ export default function SetupScreen() {
               {loading ? (
                 <ActivityIndicator color="#fff" />
               ) : (
-                <Text style={styles.buttonText}>🔗 เชื่อมต่อ MetaAPI</Text>
+                <Text style={styles.buttonText}>{t('connectMetaApi')}</Text>
               )}
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.linkButton} onPress={handleSkipToGuide}>
-              <Text style={styles.linkText}>📖 ดูคู่มือการใช้งาน</Text>
+              <Text style={styles.linkText}>{t('viewGuide')}</Text>
             </TouchableOpacity>
           </View>
         ) : (
           <View style={styles.card}>
-            <Text style={styles.cardTitle}>🧠 เลือกสมอง AI</Text>
-            <Text style={styles.cardDesc}>
-              เลือกผู้ให้บริการ AI สำหรับการวิเคราะห์และสนทนา
-            </Text>
+            <Text style={styles.cardTitle}>{t('step2AiBrain')}</Text>
+            <Text style={styles.cardDesc}>{t('setupAiBrainDesc')}</Text>
 
             {AI_PROVIDERS.map(provider => (
               <TouchableOpacity
@@ -147,7 +143,7 @@ export default function SetupScreen() {
                   </View>
                   <View style={styles.providerInfo}>
                     <Text style={styles.providerName}>{provider.name}</Text>
-                    <Text style={styles.providerDesc}>{provider.description}</Text>
+                    <Text style={styles.providerDesc}>{provider.desc}</Text>
                   </View>
                 </View>
               </TouchableOpacity>
@@ -155,12 +151,12 @@ export default function SetupScreen() {
 
             {selectedProvider !== 'kanutsananfx' && (
               <>
-                <Text style={styles.label}>API Key</Text>
+                <Text style={styles.label}>{t('apiKey')}</Text>
                 <TextInput
                   style={styles.input}
                   value={aiApiKey}
                   onChangeText={setAiApiKey}
-                  placeholder={`กรอก ${AI_PROVIDERS.find(p => p.id === selectedProvider)?.name} API Key`}
+                  placeholder={`${AI_PROVIDERS.find(p => p.id === selectedProvider)?.name} ${t('apiKey')}`}
                   placeholderTextColor={Colors.textMuted}
                   autoCapitalize="none"
                   secureTextEntry
@@ -176,12 +172,12 @@ export default function SetupScreen() {
               {loading ? (
                 <ActivityIndicator color="#fff" />
               ) : (
-                <Text style={styles.buttonText}>🧠 เชื่อมต่อสมอง AI</Text>
+                <Text style={styles.buttonText}>{t('connectAiBrain')}</Text>
               )}
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.linkButton} onPress={() => setStep(1)}>
-              <Text style={styles.linkText}>← กลับไปตั้งค่า MetaAPI</Text>
+              <Text style={styles.linkText}>{t('backToMetaApi')}</Text>
             </TouchableOpacity>
           </View>
         )}

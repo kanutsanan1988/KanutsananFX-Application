@@ -109,6 +109,147 @@ const uk: Record<TranslationKey, string> = {
   retry: 'Повторити',
   comingSoon: 'Незабаром',
   version: 'Версія',
+  guideMetaApiContent: '# MetaAPI Guide
+
+## Step 1: Зареєструйте обліковий запис MetaAPI
+- Перейдіть на https://app.metaapi.cloud
+- Створіть новий обліковий запис або увійдіть
+- Підтвердіть свою електронну пошту
+
+## Step 2: Підключіть MT5 акаунт
+- Натисніть New Account
+- Виберіть Connect existing account
+- Введіть дані MT5: Server, Login, Password
+- Натисніть Create Account
+
+## Step 3: Отримайте Account ID
+- Після створення акаунта ви побачите Account ID
+- Скопіюйте Account ID
+- Введіть його в KanutsananFX
+
+## Step 4: Отримайте API Key
+- Перейдіть у Settings, потім API Access
+- Створіть новий API Token
+- Скопіюйте Token
+- Введіть його в KanutsananFX
+
+## Важливо
+- Ніколи не діліться своїм API Key
+- Використовуйте 2FA для безпеки"New Account"\n- Select "Connect existing account"\n- Enter MT5 details: Server, Login, Password\n- Click "Create Account"\n\n## Step 3: Get Account ID\n- After creating the account, you will see the Account ID\n- Copy the Account ID\n- Enter it in KanutsananFX\n\n## Step 4: Get API Key\n- Go to Settings → API Access\n- Create a new API Token\n- Copy the Token\n- Enter it in KanutsananFX\n\n## Important\n- Never share your API Key\n- Use 2FA for security',
+  guideAiProviderContent: '# AI Provider Guide
+
+## 1. KanutsananFX (за замовчуванням)
+- Вбудований LLM, API Key не потрібен
+
+## 2. OpenAI
+- Вебсайт: https://platform.openai.com
+
+## 3. Anthropic (Claude)
+- Вебсайт: https://console.anthropic.com
+
+## 4. Google Gemini
+- Вебсайт: https://aistudio.google.com
+
+## 5. Grok (xAI)
+- Вебсайт: https://console.x.ai
+
+## 6. Perplexity
+- Вебсайт: https://www.perplexity.ai/settings/api
+
+## 7. OpenRouter
+- Вебсайт: https://openrouter.ai',
+  guideTradingSkillsContent: '# Trading Skills Guide
+
+## Автоматичні інтервали перевірки
+- 30 секунд - Найчастіше
+- 1-10 хвилин - Помірно
+- 1-5 годин - Найрідше
+
+## Аналіз системи STEP 0-9
+- STEP 0: Перевірка відкриття/закриття ринку
+- STEP 1: Поточна ціна
+- STEP 2: Аналіз графіка M15
+- STEP 3: Розрахунок SL/TP
+- STEP 4: Перевірка Risk/Reward
+- STEP 5: Розрахунок розміру позиції
+- STEP 6: Оцінка сили сигналу
+- STEP 7: Перевірка напрямку
+- STEP 8: Перевірка API
+- STEP 9: Перевірка існуючих позицій',
+  guideCommandsContent: '# Commands Guide
+
+## 1. Check Trade
+- Аналіз ринку за STEP 0-9
+- Відображення результатів аналізу
+
+## 2. Approve Trade
+- Виконання торгівлі на основі аналізу
+
+## 3. Set Auto Trading
+- Автоматична перевірка та торгівля за розкладом
+
+## 4. Cancel Auto Trading
+- Негайне припинення автоматичної торгівлі',
+  developerLinks: 'Посилання та контакти',
+  sourceCodeReference: 'Посилання на вихідний код',
+  youtubeReferences: 'Посилання на відео YouTube',
+  videoOne: 'Відео 1',
+  videoTwo: 'Відео 2',
+  developerLinkChat: 'Чат з розробником LoveMoney AI',
+  developerLinkLoveMoneyAi: 'LoveMoney AI на ChatGPT',
+  developerLinkYoutubeOfficial: 'Офіційний канал LoveMoney на YouTube',
+  developerLinkFacebookPage: 'Сторінка LoveMoney у Facebook',
+  developerLinkLokathibodi: 'Писання Локатхібоді',
+  developerLinkGardenMain: 'Сад Дхарми заслуг',
+  developerLinkGardenActivities: 'Активності Саду Дхарми',
+  developerLinkRiceTrade: 'Онлайн-група торгівлі рисом',
+  developerLinkGrassTrade: 'Група торгівлі травою Пангола',
+  developerLinkEnergyGroup: 'Група самовідновлювальної енергії',
+  developerLinkPropertyGroup: 'Група торгівлі нерухомістю',
+  setupStep: 'Крок',
+  setupMetaApiDesc: 'Введіть Account ID та API Key з MetaAPI для підключення вашого MT5 торгового акаунта',
+  setupAiBrainDesc: 'Виберіть AI провайдера для аналізу та спілкування',
+  accountIdPlaceholder: 'Введіть MetaAPI Account ID',
+  connectMetaApi: 'Підключити MetaAPI',
+  connectAiBrain: 'Підключити AI Brain',
+  viewGuide: 'Переглянути посібник',
+  backToMetaApi: 'Повернутися до налаштувань MetaAPI',
+  connectionFailedDesc: 'Будь ласка, перевірте ваш Account ID та API Key. Для допомоги дивіться меню Guide.',
+  pleaseEnterAiKey: 'Будь ласка, введіть API Key для обраного AI провайдера',
+  aiResponseCheckTrade: 'Аналіз ринку... Будь ласка, використовуйте кнопку Check Trade на екрані Trade для аналізу в реальному часі від MetaAPI.',
+  aiResponseApproveTrade: 'Будь ласка, використовуйте кнопку Approve Trade на екрані Trade після перевірки торгівлі. Система виконає ордери на основі аналізу.',
+  aiResponseAutoTrade: 'Будь ласка, спочатку налаштуйте час авто-торгівлі в Trading Skills, потім натисніть Set Auto Trading на екрані Trade.',
+  aiResponseCancelAuto: 'Будь ласка, натисніть кнопку Cancel Auto Trading на екрані Trade.',
+  aiResponseDharma: 'Дхарма є суттю життя. Торгівля — те саме: потрібна уважність, концентрація, відсутність жадібності та гніву. Anapanasati (усвідомлення дихання) — чудова основа для заспокоєння розуму.',
+  aiResponseGreeting: 'Привіт! Я KanutsananFX, радий служити вам. Я можу допомогти з аналізом ринку Forex, торговими рекомендаціями, налаштуванням торгових навичок та обговоренням Дхарми і світових фінансових систем.',
+  aiResponseDefault: 'Дякую за ваше повідомлення. Я KanutsananFX, готовий допомогти вам з торгівлею Forex та обговоренням Дхарми. Ви можете використовувати команди: Check Trade, Approve Trade, Set Auto Trading, Cancel Auto Trading.',
+  aiErrorGeneric: 'Вибачте, наразі не можу відповісти.',
+  aiErrorConnection: 'Сталася помилка. Будь ласка, перевірте ваш API Key та інтернет-з’єднання.',
+  darkMode: 'Темний режим',
+  notifications: 'Сповіщення',
+  clearChatHistory: 'Очистити історію чату',
+  clearChatConfirm: 'Ви хочете очистити всю історію чату?',
+  exportSettings: 'Експортувати налаштування',
+  importSettings: 'Імпортувати налаштування',
+  settingsMetaApiSection: 'MetaAPI',
+  settingsAiBrainSection: 'AI Brain',
+  settingsLanguageSection: 'Мова',
+  settingsBackupSection: 'Резервне копіювання/Відновлення',
+  settingsAboutSection: 'Про програму',
+  tradeAnalysisResult: 'Результат аналізу',
+  trendUp: 'Висхідний тренд',
+  trendDown: 'Низхідний тренд',
+  signalStrength: 'Сила сигналу',
+  entryPrice: 'Ціна входу',
+  stopLoss: 'Stop Loss',
+  takeProfit: 'Take Profit',
+  lotSize: 'Lot Size',
+  riskReward: 'Risk/Reward',
+  noAnalysisYet: 'Аналіз відсутній',
+  analyzing: 'Аналізую...',
+  executing: 'Виконую...',
+  autoTradeActive: 'Авто-торгівля активна',
+  autoTradeInactive: 'Авто-торгівля неактивна',
 };
 
 export default uk;

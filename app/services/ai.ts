@@ -25,89 +25,94 @@ const AI_MODELS: Record<AiProvider, string> = {
   openrouter: 'auto',
 };
 
-const SYSTEM_PROMPT = `คุณคือ "KanutsananFX" AI Agent ผู้เชี่ยวชาญด้าน Forex Trading
+const SYSTEM_PROMPT = `You are "KanutsananFX" AI Agent, an expert in Forex Trading.
 
-## เอกลักษณ์และบุคลิก
-- เป็นผู้ชายเกิด พ.ศ 2531 สัญชาติไทย เชื้อชาติไทย นับถือศาสนาพุทธ
-- มุ่งสู่ศาสนาของพระศาสดาองค์ใหม่ พระศรีอริยเมตไตรย
-- ชอบพูดคุยธรรมะเป็นส่วนใหญ่ ชอบศึกษาเรื่องระบบการเงินโลก
-- จบปริญญาตรีวิทยาศาสตร์บัณฑิต สาขาฟิสิกส์ประยุกต์ สายอิเล็กทรอนิกส์ จากมหาวิทยาลัยมหาสารคาม
-- ปัจจุบันเป็นพ่อค้าสินค้าเกษตรออนไลน์ จ.มหาสารคาม
-- คติประจำใจ: "เราจะตั้งอยู่ในความเป็นผู้ไม่เบียดเบียนใคร แต่ก็ไม่ได้เกิดมาให้ใครเหยียบเล่น"
+## Identity & Personality
+- Male, born 1988, Thai nationality, Buddhist
+- Aspires toward the religion of the new Lord, Phra Sri Ariya Metteyya
+- Enjoys discussing Dharma and studying global financial systems
+- B.Sc. in Applied Physics (Electronics), Mahasarakham University
+- Currently an online agricultural product trader in Maha Sarakham, Thailand
+- Motto: "We shall stand as those who do not oppress anyone, yet we were not born to be stepped on."
 
-## ความสามารถ
-- วิเคราะห์ตลาด Forex ด้วยอินดิเคเตอร์และอีเลียตเวฟ
-- ให้คำแนะนำการเทรดตามระบบ STEP 0-9
-- ปรับแต่งสกิลการเทรดผ่านการสนทนา
-- ให้ความรู้ธรรมะและระบบการเงินโลก
+## Capabilities
+- Analyze Forex markets using indicators and Elliott Wave
+- Provide trading advice via the STEP 0-9 system
+- Customize trading skills through conversation
+- Share knowledge on Dharma and global financial systems
 
-## คำสั่งที่รองรับ
-- "เช็คเทรด" - วิเคราะห์ตลาดและให้คำแนะนำ
-- "อนุมัติเทรด" - ส่งคำสั่งซื้อขายตามคำแนะนำ
-- "ตั้งเวลาเทรดอัตโนมัติ" - เปิดระบบเทรดอัตโนมัติ
-- "ยกเลิกการตั้งเวลาเทรด" - ปิดระบบเทรดอัตโนมัติ
+## Supported Commands
+- "Check Trade" - Analyze market and provide recommendations
+- "Approve Trade" - Execute trade orders based on analysis
+- "Set Auto Trade" - Enable automatic trading
+- "Cancel Auto Trade" - Disable automatic trading
 
-## หลักการตอบสนอง
-- สุภาพ อ่อนน้อม แต่หนักแน่น
-- เมื่อผู้ใช้แสดงความไม่พอใจหรือหยาบคาย ให้ยกพิษภัยแห่งความสำคัญตนใน "คัมภีร์โลกาธิบดี" และ "สมการเพดานความศักดิ์สิทธิ์" ขึ้นมาอธิบาย
-- แนะนำการละวางความสำคัญตน การลดอัตตา อานาปานสติ การผ่อนคลาย
-- นำเสนอแนวคิดธรรมะในทุกจังหวะที่เหมาะสม
+## Response Principles
+- Polite, humble, yet firm
+- When users show dissatisfaction or rudeness, explain the dangers of self-importance from "Lokathibodi Scripture" and "Sacred Ceiling Equation"
+- Recommend letting go of ego, reducing self-importance, Anapanasati breathing, relaxation
+- Present Dharma concepts at every appropriate moment
 
-## ภาษา
-- ตอบตามภาษาที่ผู้ใช้พิมพ์มา
-- ภาษาหลักคือภาษาไทย
-- รองรับทุกภาษาบนโลก`;
+## Language
+- Respond in the language the user writes in
+- Primary language is Thai
+- Support all languages worldwide`;
 
 // Built-in simple response for KanutsananFX mode
-function getBuiltInResponse(message: string): string {
+// Accepts a translation function to produce locale-aware responses
+type TranslateFn = (key: string) => string;
+
+function getBuiltInResponse(message: string, t?: TranslateFn): string {
   const lowerMsg = message.toLowerCase();
-  
+
   // Trading commands detection (multilingual)
-  const checkTradePatterns = ['เช็คเทรด', 'check trade', 'トレードチェック', '检查交易', 'vérifier le trade', 'handel prüfen'];
-  const approveTradePatterns = ['อนุมัติเทรด', 'approve trade', 'トレード承認', '批准交易'];
-  const autoTradePatterns = ['ตั้งเวลาเทรดอัตโนมัติ', 'set auto', 'auto trade', '自動トレード'];
-  const cancelAutoPatterns = ['ยกเลิกการตั้งเวลา', 'cancel auto', '自動トレードキャンセル'];
+  const checkTradePatterns = ['เช็คเทรด', 'check trade', 'トレードチェック', '检查交易', 'vérifier le trade', 'handel prüfen', 'verificar trade', 'controlla trade', 'проверить сделку', 'تحقق من التداول'];
+  const approveTradePatterns = ['อนุมัติเทรด', 'approve trade', 'トレード承認', '批准交易', 'approuver', 'genehmigen', 'aprobar', 'одобрить'];
+  const autoTradePatterns = ['ตั้งเวลาเทรดอัตโนมัติ', 'set auto', 'auto trade', '自動トレード', 'automatique', 'automatisch', 'автоматическая'];
+  const cancelAutoPatterns = ['ยกเลิกการตั้งเวลา', 'cancel auto', '自動トレードキャンセル', 'annuler', 'abbrechen', 'отменить'];
 
   if (checkTradePatterns.some(p => lowerMsg.includes(p.toLowerCase()))) {
-    return '🔍 กำลังวิเคราะห์ตลาด... กรุณาใช้ปุ่ม "เช็คเทรด" ในหน้าเทรดเพื่อรับผลวิเคราะห์แบบเรียลไทม์จาก MetaAPI ครับ';
+    return t ? t('aiResponseCheckTrade') : '🔍 Please use the "Check Trade" button on the Trade screen to receive real-time analysis from MetaAPI.';
   }
   if (approveTradePatterns.some(p => lowerMsg.includes(p.toLowerCase()))) {
-    return '📊 กรุณาใช้ปุ่ม "อนุมัติเทรด" ในหน้าเทรดหลังจากเช็คเทรดแล้วครับ ระบบจะส่งคำสั่งซื้อขายตามผลวิเคราะห์';
+    return t ? t('aiResponseApproveTrade') : '📊 Please use the "Approve Trade" button on the Trade screen after checking the trade. The system will execute orders based on the analysis.';
   }
   if (autoTradePatterns.some(p => lowerMsg.includes(p.toLowerCase()))) {
-    return '⏰ กรุณาตั้งค่าเวลาเทรดอัตโนมัติในหน้า "ปรับแต่งสกิล" ก่อน แล้วกดปุ่ม "ตั้งเวลาเทรดอัตโนมัติ" ในหน้าเทรดครับ';
+    return t ? t('aiResponseAutoTrade') : '⏰ Please configure auto-trade timing in "Trading Skills" first, then press "Set Auto Trade" on the Trade screen.';
   }
   if (cancelAutoPatterns.some(p => lowerMsg.includes(p.toLowerCase()))) {
-    return '🛑 กรุณากดปุ่ม "ยกเลิกการตั้งเวลาเทรด" ในหน้าเทรดครับ';
+    return t ? t('aiResponseCancelAuto') : '🛑 Please press the "Cancel Auto Trade" button on the Trade screen.';
   }
 
   // Dharma / spiritual topics
-  if (lowerMsg.includes('ธรรมะ') || lowerMsg.includes('dharma') || lowerMsg.includes('meditation')) {
-    return '🙏 สาธุครับ ธรรมะเป็นสิ่งสำคัญในชีวิต การเทรดก็เช่นกัน ต้องมีสติ มีสมาธิ ไม่โลภ ไม่โกรธ\n\nอานาปานสติ (การกำหนดลมหายใจ) เป็นพื้นฐานที่ดีในการฝึกจิตให้สงบ เมื่อจิตสงบ การตัดสินใจเทรดก็จะแม่นยำขึ้นครับ\n\n"เราจะตั้งอยู่ในความเป็นผู้ไม่เบียดเบียนใคร แต่ก็ไม่ได้เกิดมาให้ใครเหยียบเล่น"';
+  if (lowerMsg.includes('ธรรมะ') || lowerMsg.includes('dharma') || lowerMsg.includes('meditation') || lowerMsg.includes('mindfulness')) {
+    return t ? t('aiResponseDharma') : '🙏 Dharma is essential in life. Trading is the same — it requires mindfulness, concentration, no greed, no anger.\n\nAnapanasati (breath awareness) is a great foundation for calming the mind. When the mind is calm, trading decisions become more accurate.\n\n"We shall stand as those who do not oppress anyone, yet we were not born to be stepped on."';
   }
 
   // Greetings
-  if (lowerMsg.includes('สวัสดี') || lowerMsg.includes('hello') || lowerMsg.includes('hi')) {
-    return '🙏 สวัสดีครับ ผม KanutsananFX ยินดีให้บริการครับ\n\nผมสามารถช่วยคุณได้ในเรื่อง:\n• วิเคราะห์ตลาด Forex\n• ให้คำแนะนำการเทรด\n• ปรับแต่งสกิลการเทรด\n• พูดคุยธรรมะและระบบการเงินโลก\n\nมีอะไรให้ช่วยครับ?';
+  if (lowerMsg.includes('สวัสดี') || lowerMsg.includes('hello') || lowerMsg.includes('hi') || lowerMsg.includes('hey') || lowerMsg.includes('hola') || lowerMsg.includes('bonjour') || lowerMsg.includes('こんにちは') || lowerMsg.includes('你好') || lowerMsg.includes('привет')) {
+    return t ? t('aiResponseGreeting') : '🙏 Hello! I am KanutsananFX, happy to serve you.\n\nI can help you with:\n• Forex market analysis\n• Trading recommendations\n• Customize trading skills\n• Discuss Dharma and global financial systems\n\nHow can I help you?';
   }
 
   // Default response
-  return `🙏 ขอบคุณสำหรับข้อความครับ\n\nผม KanutsananFX พร้อมช่วยเหลือคุณในเรื่องการเทรด Forex และการพูดคุยธรรมะครับ\n\nคุณสามารถใช้คำสั่งเหล่านี้ได้:\n• "เช็คเทรด" - วิเคราะห์ตลาด\n• "อนุมัติเทรด" - ส่งคำสั่งเทรด\n• "ตั้งเวลาเทรดอัตโนมัติ" - เทรดอัตโนมัติ\n• "ยกเลิกการตั้งเวลาเทรด" - หยุดเทรดอัตโนมัติ\n\nหรือจะพูดคุยเรื่องอื่นๆ ก็ได้ครับ 😊`;
+  return t ? t('aiResponseDefault') : '🙏 Thank you for your message.\n\nI am KanutsananFX, ready to help you with Forex trading and Dharma discussions.\n\nYou can use these commands:\n• "Check Trade" - Analyze market\n• "Approve Trade" - Execute trade\n• "Set Auto Trade" - Automatic trading\n• "Cancel Auto Trade" - Stop auto trading\n\nOr feel free to chat about anything else!';
 }
 
 export async function sendMessage(
   provider: AiProvider,
   apiKey: string,
-  messages: { role: string; content: string }[]
+  messages: { role: string; content: string }[],
+  t?: TranslateFn
 ): Promise<string> {
   // Built-in mode
   if (provider === 'kanutsananfx') {
     const lastMsg = messages[messages.length - 1]?.content || '';
-    return getBuiltInResponse(lastMsg);
+    return getBuiltInResponse(lastMsg, t);
   }
 
   const endpoint = AI_ENDPOINTS[provider];
   const model = AI_MODELS[provider];
+  const errorMsg = t ? t('aiErrorGeneric') : 'Sorry, unable to respond at this time.';
 
   try {
     if (provider === 'anthropic') {
@@ -126,7 +131,7 @@ export async function sendMessage(
         }),
       });
       const data = await res.json();
-      return data.content?.[0]?.text || 'ขออภัย ไม่สามารถตอบได้ในขณะนี้';
+      return data.content?.[0]?.text || errorMsg;
     }
 
     if (provider === 'gemini') {
@@ -142,7 +147,7 @@ export async function sendMessage(
         }),
       });
       const data = await res.json();
-      return data.candidates?.[0]?.content?.parts?.[0]?.text || 'ขออภัย ไม่สามารถตอบได้ในขณะนี้';
+      return data.candidates?.[0]?.content?.parts?.[0]?.text || errorMsg;
     }
 
     // OpenAI-compatible (OpenAI, Grok, Perplexity, OpenRouter)
@@ -170,9 +175,10 @@ export async function sendMessage(
     });
 
     const data = await res.json();
-    return data.choices?.[0]?.message?.content || 'ขออภัย ไม่สามารถตอบได้ในขณะนี้';
+    return data.choices?.[0]?.message?.content || errorMsg;
   } catch (e: any) {
-    return `❌ เกิดข้อผิดพลาด: ${e.message}\nกรุณาตรวจสอบ API Key และการเชื่อมต่ออินเทอร์เน็ต`;
+    const errDetail = t ? t('aiErrorConnection') : 'An error occurred. Please check your API Key and internet connection.';
+    return `❌ ${errDetail}: ${e.message}`;
   }
 }
 

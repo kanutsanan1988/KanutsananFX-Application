@@ -109,6 +109,147 @@ const mr: Record<TranslationKey, string> = {
   retry: 'पुन्हा प्रयत्न करा',
   comingSoon: 'लवकरच येत आहे',
   version: 'आवृत्ती',
+  guideMetaApiContent: '# MetaAPI मार्गदर्शक
+
+## पायरी 1: MetaAPI खाते नोंदणी करा
+- https://app.metaapi.cloud वर जा
+- नवीन खाते तयार करा किंवा साइन इन करा
+- आपला ईमेल सत्यापित करा
+
+## पायरी 2: MT5 खाते कनेक्ट करा
+- नवीन खाते क्लिक करा
+- विद्यमान खाते कनेक्ट करा निवडा
+- MT5 तपशील प्रविष्ट करा: सर्व्हर, लॉगिन, पासवर्ड
+- खाते तयार करा क्लिक करा
+
+## पायरी 3: खाते आयडी मिळवा
+- खाते तयार केल्यानंतर, आपल्याला खाते आयडी दिसेल
+- खाते आयडी कॉपी करा
+- तो KanutsananFX मध्ये प्रविष्ट करा
+
+## पायरी 4: API की मिळवा
+- सेटिंग्ज नंतर API प्रवेश वर जा
+- नवीन API टोकन तयार करा
+- टोकन कॉपी करा
+- तो KanutsananFX मध्ये प्रविष्ट करा
+
+## महत्त्वाचे
+- आपली API की कधीही शेअर करू नका
+- सुरक्षिततेसाठी 2FA वापरा"New Account"\n- Select "Connect existing account"\n- Enter MT5 details: Server, Login, Password\n- Click "Create Account"\n\n## Step 3: Get Account ID\n- After creating the account, you will see the Account ID\n- Copy the Account ID\n- Enter it in KanutsananFX\n\n## Step 4: Get API Key\n- Go to Settings → API Access\n- Create a new API Token\n- Copy the Token\n- Enter it in KanutsananFX\n\n## Important\n- Never share your API Key\n- Use 2FA for security',
+  guideAiProviderContent: '# AI प्रदाता मार्गदर्शक
+
+## 1. KanutsananFX (डीफॉल्ट)
+- अंगभूत LLM, API की आवश्यक नाही
+
+## 2. OpenAI
+- वेबसाइट: https://platform.openai.com
+
+## 3. Anthropic (Claude)
+- वेबसाइट: https://console.anthropic.com
+
+## 4. Google Gemini
+- वेबसाइट: https://aistudio.google.com
+
+## 5. Grok (xAI)
+- वेबसाइट: https://console.x.ai
+
+## 6. Perplexity
+- वेबसाइट: https://www.perplexity.ai/settings/api
+
+## 7. OpenRouter
+- वेबसाइट: https://openrouter.ai',
+  guideTradingSkillsContent: '# ट्रेडिंग कौशल्ये मार्गदर्शक
+
+## स्वयं तपासणी मध्यांतर
+- 30 सेकंद - सर्वात वारंवार
+- 1-10 मिनिटे - मध्यम
+- 1-5 तास - सर्वात कमी वारंवार
+
+## विश्लेषण प्रणाली STEP 0-9
+- STEP 0: बाजार उघडे/बंद तपासा
+- STEP 1: वर्तमान किंमत
+- STEP 2: M15 चार्टचे विश्लेषण करा
+- STEP 3: SL/TP गणना करा
+- STEP 4: Risk/Reward तपासा
+- STEP 5: स्थिती आकार गणना करा
+- STEP 6: सिग्नल सामर्थ्याचे मूल्यांकन करा
+- STEP 7: दिशा तपासा
+- STEP 8: API सत्यापित करा
+- STEP 9: विद्यमान स्थिती तपासा',
+  guideCommandsContent: '# आदेश मार्गदर्शक
+
+## 1. व्यापार तपासा
+- STEP 0-9 वापरून बाजाराचे विश्लेषण करा
+- विश्लेषण परिणाम प्रदर्शित करा
+
+## 2. व्यापार मंजूर करा
+- विश्लेषणावर आधारित व्यापार कार्यान्वित करा
+
+## 3. स्वयं ट्रेडिंग सेट करा
+- वेळापत्रकानुसार स्वयंचलितपणे तपासा आणि व्यापार करा
+
+## 4. स्वयं ट्रेडिंग रद्द करा
+- स्वयंचलित ट्रेडिंग त्वरित थांबवा',
+  developerLinks: 'लिंक्स आणि संपर्क',
+  sourceCodeReference: 'स्रोत कोड संदर्भ',
+  youtubeReferences: 'YouTube व्हिडिओ संदर्भ',
+  videoOne: 'व्हिडिओ 1',
+  videoTwo: 'व्हिडिओ 2',
+  developerLinkChat: 'डेव्हलपर LoveMoney AI सह चॅट करा',
+  developerLinkLoveMoneyAi: 'ChatGPT वर LoveMoney AI',
+  developerLinkYoutubeOfficial: 'YouTube चॅनेल LoveMoney ऑफिशियल',
+  developerLinkFacebookPage: 'फेसबुक पेज LoveMoney',
+  developerLinkLokathibodi: 'लोकाधिबोधी ग्रंथ',
+  developerLinkGardenMain: 'पुण्याचा धर्म बाग',
+  developerLinkGardenActivities: 'धर्म बाग उपक्रम',
+  developerLinkRiceTrade: 'ऑनलाइन तांदूळ ट्रेडिंग गट',
+  developerLinkGrassTrade: 'पंगोला गवत ट्रेडिंग गट',
+  developerLinkEnergyGroup: 'स्व-शुद्धीकरण ऊर्जा गट',
+  developerLinkPropertyGroup: 'रिअल इस्टेट ट्रेडिंग गट',
+  setupStep: 'पायरी',
+  setupMetaApiDesc: 'आपले MT5 ट्रेडिंग खाते कनेक्ट करण्यासाठी MetaAPI वरून खाते आयडी आणि API की प्रविष्ट करा',
+  setupAiBrainDesc: 'विश्लेषण आणि संभाषणासाठी AI प्रदाता निवडा',
+  accountIdPlaceholder: 'MetaAPI खाते आयडी प्रविष्ट करा',
+  connectMetaApi: 'MetaAPI कनेक्ट करा',
+  connectAiBrain: 'AI ब्रेन कनेक्ट करा',
+  viewGuide: 'मार्गदर्शक पहा',
+  backToMetaApi: 'MetaAPI सेटअपवर परत जा',
+  connectionFailedDesc: 'कृपया आपला खाते आयडी आणि API की तपासा. मदतीसाठी मार्गदर्शक मेनू पहा.',
+  pleaseEnterAiKey: 'कृपया निवडलेल्या AI प्रदात्यासाठी API की प्रविष्ट करा',
+  aiResponseCheckTrade: 'बाजाराचे विश्लेषण करत आहे... MetaAPI वरून रिअल-टाइम विश्लेषणासाठी कृपया ट्रेड स्क्रीनवरील व्यापार तपासा बटण वापरा.',
+  aiResponseApproveTrade: 'कृपया व्यापार तपासल्यानंतर ट्रेड स्क्रीनवरील व्यापार मंजूर करा बटण वापरा. प्रणाली विश्लेषणावर आधारित ऑर्डर कार्यान्वित करेल.',
+  aiResponseAutoTrade: 'कृपया प्रथम ट्रेडिंग कौशल्यांमध्ये स्वयं-व्यापार वेळ कॉन्फिगर करा, नंतर ट्रेड स्क्रीनवर स्वयं ट्रेडिंग सेट करा दाबा.',
+  aiResponseCancelAuto: 'कृपया ट्रेड स्क्रीनवरील स्वयं ट्रेडिंग रद्द करा बटण दाबा.',
+  aiResponseDharma: 'जीवनात धर्म आवश्यक आहे. ट्रेडिंग हे समान आहे - त्याला सजगता, एकाग्रता, लोभ नाही, राग नाही आवश्यक आहे. मनाला शांत करण्यासाठी आनापानसती (श्वासाची जाणीव) एक उत्तम पाया आहे.',
+  aiResponseGreeting: 'नमस्कार! मी KanutsananFX आहे, तुमची सेवा करण्यास आनंद होत आहे. मी तुम्हाला फॉरेक्स बाजार विश्लेषण, ट्रेडिंग शिफारसी, ट्रेडिंग कौशल्ये सानुकूलित करणे आणि धर्म आणि जागतिक आर्थिक प्रणालींवर चर्चा करण्यास मदत करू शकेन.',
+  aiResponseDefault: 'तुमच्या संदेशाबद्दल धन्यवाद. मी KanutsananFX आहे, तुम्हाला फॉरेक्स ट्रेडिंग आणि धर्म चर्चांमध्ये मदत करण्यास तयार आहे. तुम्ही आदेश वापरू शकता: व्यापार तपासा, व्यापार मंजूर करा, स्वयं ट्रेडिंग सेट करा, स्वयं ट्रेडिंग रद्द करा.',
+  aiErrorGeneric: 'क्षमस्व, यावेळी प्रतिसाद देण्यास अक्षम.',
+  aiErrorConnection: 'एक त्रुटी आली. कृपया आपली API की आणि इंटरनेट कनेक्शन तपासा.',
+  darkMode: 'डार्क मोड',
+  notifications: 'सूचना',
+  clearChatHistory: 'चॅट इतिहास साफ करा',
+  clearChatConfirm: 'तुम्हाला सर्व चॅट इतिहास साफ करायचा आहे का?',
+  exportSettings: 'सेटिंग्ज निर्यात करा',
+  importSettings: 'सेटिंग्ज आयात करा',
+  settingsMetaApiSection: 'MetaAPI',
+  settingsAiBrainSection: 'AI ब्रेन',
+  settingsLanguageSection: 'भाषा',
+  settingsBackupSection: 'बॅकअप/पुनर्संचयित करा',
+  settingsAboutSection: 'बद्दल',
+  tradeAnalysisResult: 'विश्लेषण परिणाम',
+  trendUp: 'अपट्रेंड',
+  trendDown: 'डाउनट्रेंड',
+  signalStrength: 'सिग्नल सामर्थ्य',
+  entryPrice: 'प्रवेश किंमत',
+  stopLoss: 'Stop Loss',
+  takeProfit: 'Take Profit',
+  lotSize: 'Lot Size',
+  riskReward: 'Risk/Reward',
+  noAnalysisYet: 'अद्याप विश्लेषण नाही',
+  analyzing: 'विश्लेषण करत आहे...',
+  executing: 'कार्यान्वित करत आहे...',
+  autoTradeActive: 'स्वयं ट्रेडिंग सक्रिय आहे',
+  autoTradeInactive: 'स्वयं ट्रेडिंग निष्क्रिय आहे',
 };
 
 export default mr;

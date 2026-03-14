@@ -7,35 +7,41 @@ import { useApp } from '../context/AppContext';
 import { metaApiService } from '../services/metaapi';
 import { Colors, FontSize, Spacing, BorderRadius } from '../constants/theme';
 
-const INTERVAL_OPTIONS = [
-  { label: '30 วินาที', value: 30 },
-  { label: '40 วินาที', value: 40 },
-  { label: '50 วินาที', value: 50 },
-  { label: '1 นาที', value: 60 },
-  { label: '2 นาที', value: 120 },
-  { label: '3 นาที', value: 180 },
-  { label: '4 นาที', value: 240 },
-  { label: '5 นาที', value: 300 },
-  { label: '6 นาที', value: 360 },
-  { label: '7 นาที', value: 420 },
-  { label: '8 นาที', value: 480 },
-  { label: '9 นาที', value: 540 },
-  { label: '10 นาที', value: 600 },
-  { label: '20 นาที', value: 1200 },
-  { label: '30 นาที', value: 1800 },
-  { label: '40 นาที', value: 2400 },
-  { label: '50 นาที', value: 3000 },
-  { label: '1 ชั่วโมง', value: 3600 },
-  { label: '2 ชั่วโมง', value: 7200 },
-  { label: '3 ชั่วโมง', value: 10800 },
-  { label: '4 ชั่วโมง', value: 14400 },
-  { label: '5 ชั่วโมง', value: 18000 },
-];
-
 export default function SkillsScreen() {
   const { state, setAutoTradeInterval, setTradingPair, isFullyConnected, t } = useApp();
   const [symbols, setSymbols] = useState<string[]>([]);
   const [loadingSymbols, setLoadingSymbols] = useState(false);
+
+  const formatInterval = (seconds: number): string => {
+    if (seconds < 60) return `${seconds} ${t('seconds')}`;
+    if (seconds < 3600) return `${seconds / 60} ${t('minutes')}`;
+    return `${seconds / 3600} ${t('hours')}`;
+  };
+
+  const INTERVAL_OPTIONS = [
+    { value: 30 },
+    { value: 40 },
+    { value: 50 },
+    { value: 60 },
+    { value: 120 },
+    { value: 180 },
+    { value: 240 },
+    { value: 300 },
+    { value: 360 },
+    { value: 420 },
+    { value: 480 },
+    { value: 540 },
+    { value: 600 },
+    { value: 1200 },
+    { value: 1800 },
+    { value: 2400 },
+    { value: 3000 },
+    { value: 3600 },
+    { value: 7200 },
+    { value: 10800 },
+    { value: 14400 },
+    { value: 18000 },
+  ];
 
   useEffect(() => {
     if (state.isMetaApiConnected) {
@@ -57,16 +63,15 @@ export default function SkillsScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      {/* Auto Trade Interval */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>
-          <Ionicons name="time-outline" size={20} color={Colors.accentGold} /> ช่วงเวลาเช็คเทรดอัตโนมัติ
+          <Ionicons name="time-outline" size={20} color={Colors.accentGold} /> {t('autoCheckInterval')}
         </Text>
         <Text style={styles.sectionDesc}>
-          ปรับช่วงเวลาที่ระบบจะเช็คเทรดอัตโนมัติ
+          {t('setAutoTradeDesc')}
         </Text>
         <Text style={styles.currentValue}>
-          ปัจจุบัน: {INTERVAL_OPTIONS.find(o => o.value === state.autoTradeInterval)?.label || `${state.autoTradeInterval} วินาที`}
+          {t('currentSetting')}: {formatInterval(state.autoTradeInterval)}
         </Text>
 
         <View style={styles.optionGrid}>
@@ -83,29 +88,28 @@ export default function SkillsScreen() {
                 styles.optionChipText,
                 state.autoTradeInterval === option.value && styles.optionChipTextSelected,
               ]}>
-                {option.label}
+                {formatInterval(option.value)}
               </Text>
             </TouchableOpacity>
           ))}
         </View>
       </View>
 
-      {/* Trading Pair Selection */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>
-          <Ionicons name="swap-horizontal-outline" size={20} color={Colors.accentGold} /> เลือกคู่เทรด
+          <Ionicons name="swap-horizontal-outline" size={20} color={Colors.accentGold} /> {t('selectTradingPair')}
         </Text>
         <Text style={styles.sectionDesc}>
-          เลือกคู่เทรดจาก MetaAPI (ดึงจาก API ของ MetaAPI เท่านั้น)
+          {t('selectPair')}
         </Text>
         <Text style={styles.currentValue}>
-          ปัจจุบัน: {state.tradingPair}
+          {t('currentSetting')}: {state.tradingPair}
         </Text>
 
         {!isFullyConnected ? (
           <View style={styles.warningBox}>
             <Ionicons name="warning" size={20} color={Colors.warning} />
-            <Text style={styles.warningText}>กรุณาเชื่อมต่อ MetaAPI ก่อนเพื่อดึงรายการคู่เทรด</Text>
+            <Text style={styles.warningText}>{t('connectMetaApiFirst')}</Text>
           </View>
         ) : loadingSymbols ? (
           <View style={styles.loadingBox}>
@@ -137,7 +141,7 @@ export default function SkillsScreen() {
         {isFullyConnected && (
           <TouchableOpacity style={styles.refreshButton} onPress={loadSymbols}>
             <Ionicons name="refresh" size={16} color={Colors.accentGold} />
-            <Text style={styles.refreshText}>โหลดคู่เทรดใหม่</Text>
+            <Text style={styles.refreshText}>{t('refreshPairs')}</Text>
           </TouchableOpacity>
         )}
       </View>

@@ -108,6 +108,147 @@ const ja: Record<TranslationKey, string> = {
   retry: '再試行',
   comingSoon: '近日公開',
   version: 'バージョン',
+  guideMetaApiContent: '# MetaAPIガイド
+
+## ステップ1：MetaAPIアカウントの登録
+- https://app.metaapi.cloud にアクセス
+- 新規アカウントを作成またはサインイン
+- メールアドレスを認証
+
+## ステップ2：MT5アカウントの接続
+- 「新規アカウント」をクリック
+- 「既存のアカウントを接続」を選択
+- MT5の詳細情報を入力：サーバー、ログイン、パスワード
+- 「アカウント作成」をクリック
+
+## ステップ3：Account IDの取得
+- アカウント作成後、Account IDが表示されます
+- Account IDをコピー
+- KanutsananFXに入力
+
+## ステップ4：API Keyの取得
+- 「設定」→「APIアクセス」に移動
+- 新しいAPIトークンを作成
+- トークンをコピー
+- KanutsananFXに入力
+
+## 重要
+- API Keyは絶対に共有しないでください
+- セキュリティのため2FAを使用してください"New Account"\n- Select "Connect existing account"\n- Enter MT5 details: Server, Login, Password\n- Click "Create Account"\n\n## Step 3: Get Account ID\n- After creating the account, you will see the Account ID\n- Copy the Account ID\n- Enter it in KanutsananFX\n\n## Step 4: Get API Key\n- Go to Settings → API Access\n- Create a new API Token\n- Copy the Token\n- Enter it in KanutsananFX\n\n## Important\n- Never share your API Key\n- Use 2FA for security',
+  guideAiProviderContent: '# AIプロバイダーガイド
+
+## 1. KanutsananFX (デフォルト)
+- 内蔵LLM、API Keyは不要
+
+## 2. OpenAI
+- ウェブサイト：https://platform.openai.com
+
+## 3. Anthropic (Claude)
+- ウェブサイト：https://console.anthropic.com
+
+## 4. Google Gemini
+- ウェブサイト：https://aistudio.google.com
+
+## 5. Grok (xAI)
+- ウェブサイト：https://console.x.ai
+
+## 6. Perplexity
+- ウェブサイト：https://www.perplexity.ai/settings/api
+
+## 7. OpenRouter
+- ウェブサイト：https://openrouter.ai',
+  guideTradingSkillsContent: '# 取引スキルガイド
+
+## 自動チェック間隔
+- 30秒 - 最も頻繁
+- 1-10分 - 中程度
+- 1-5時間 - 最も少ない
+
+## 分析システム STEP 0-9
+- STEP 0：市場の開閉をチェック
+- STEP 1：現在価格
+- STEP 2：M15チャートを分析
+- STEP 3：SL/TPを計算
+- STEP 4：Risk/Rewardをチェック
+- STEP 5：ポジションサイズを計算
+- STEP 6：シグナルの強さを評価
+- STEP 7：方向性を確認
+- STEP 8：APIを検証
+- STEP 9：既存のポジションをチェック',
+  guideCommandsContent: '# コマンドガイド
+
+## 1. 取引チェック
+- STEP 0-9を使用して市場を分析
+- 分析結果を表示
+
+## 2. 取引承認
+- 分析に基づいて取引を実行
+
+## 3. 自動取引設定
+- スケジュール通りに自動でチェックして取引
+
+## 4. 自動取引キャンセル
+- 自動取引を直ちに停止',
+  developerLinks: 'リンクと連絡先',
+  sourceCodeReference: 'ソースコードリファレンス',
+  youtubeReferences: 'YouTubeビデオ参照',
+  videoOne: 'ビデオ1',
+  videoTwo: 'ビデオ2',
+  developerLinkChat: '開発者LoveMoney AIとチャット',
+  developerLinkLoveMoneyAi: 'ChatGPT上のLoveMoney AI',
+  developerLinkYoutubeOfficial: 'YouTubeチャンネル LoveMoney Official',
+  developerLinkFacebookPage: 'Facebookページ LoveMoney',
+  developerLinkLokathibodi: 'ロカティボディ経典',
+  developerLinkGardenMain: '功徳の法園',
+  developerLinkGardenActivities: '法園の活動',
+  developerLinkRiceTrade: 'オンライン米取引グループ',
+  developerLinkGrassTrade: 'パンゴラ草取引グループ',
+  developerLinkEnergyGroup: '自己精製エネルギーグループ',
+  developerLinkPropertyGroup: '不動産取引グループ',
+  setupStep: 'ステップ',
+  setupMetaApiDesc: 'MetaAPIからAccount IDとAPI Keyを入力して、MT5取引アカウントに接続します',
+  setupAiBrainDesc: '分析と会話のためのAIプロバイダーを選択してください',
+  accountIdPlaceholder: 'MetaAPI Account IDを入力',
+  connectMetaApi: 'MetaAPIに接続',
+  connectAiBrain: 'AIブレインに接続',
+  viewGuide: 'ガイドを見る',
+  backToMetaApi: 'MetaAPI設定に戻る',
+  connectionFailedDesc: 'Account IDとAPI Keyを確認してください。ヘルプはガイドメニューを参照してください。',
+  pleaseEnterAiKey: '選択したAIプロバイダーのAPI Keyを入力してください',
+  aiResponseCheckTrade: '市場を分析中... MetaAPIからのリアルタイム分析は、取引画面の「取引チェック」ボタンを使用してください。',
+  aiResponseApproveTrade: '取引を確認した後、取引画面の「取引承認」ボタンを使用してください。システムは分析に基づいて注文を実行します。',
+  aiResponseAutoTrade: 'まず取引スキルで自動取引のタイミングを設定し、その後、取引画面で「自動取引設定」を押してください。',
+  aiResponseCancelAuto: '取引画面の「自動取引キャンセル」ボタンを押してください。',
+  aiResponseDharma: 'ダルマは人生に不可欠です。取引も同じで、マインドフルネス、集中力、貪欲さや怒りのなさが必要です。アナパナサティ（呼吸への気づき）は心を落ち着かせるための素晴らしい基盤です。',
+  aiResponseGreeting: 'こんにちは！私はKanutsananFXです。喜んでお手伝いします。外国為替市場の分析、取引の推奨、取引スキルのカスタマイズ、ダルマや世界の金融システムについての議論をお手伝いできます。',
+  aiResponseDefault: 'メッセージありがとうございます。私はKanutsananFXです。外国為替取引やダルマに関する議論のお手伝いをします。コマンド：取引チェック、取引承認、自動取引設定、自動取引キャンセルが使用できます。',
+  aiErrorGeneric: '申し訳ありませんが、現在応答できません。',
+  aiErrorConnection: 'エラーが発生しました。API Keyとインターネット接続を確認してください。',
+  darkMode: 'ダークモード',
+  notifications: '通知',
+  clearChatHistory: 'チャット履歴をクリア',
+  clearChatConfirm: 'すべてのチャット履歴をクリアしますか？',
+  exportSettings: '設定をエクスポート',
+  importSettings: '設定をインポート',
+  settingsMetaApiSection: 'MetaAPI',
+  settingsAiBrainSection: 'AIブレイン',
+  settingsLanguageSection: '言語',
+  settingsBackupSection: 'バックアップ/復元',
+  settingsAboutSection: '概要',
+  tradeAnalysisResult: '分析結果',
+  trendUp: '上昇トレンド',
+  trendDown: '下降トレンド',
+  signalStrength: 'シグナルの強さ',
+  entryPrice: 'エントリー価格',
+  stopLoss: 'Stop Loss',
+  takeProfit: 'Take Profit',
+  lotSize: 'Lot Size',
+  riskReward: 'Risk/Reward',
+  noAnalysisYet: 'まだ分析がありません',
+  analyzing: '分析中...',
+  executing: '実行中...',
+  autoTradeActive: '自動取引が有効です',
+  autoTradeInactive: '自動取引は無効です',
 };
 
 export default ja;

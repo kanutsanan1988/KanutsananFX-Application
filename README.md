@@ -86,7 +86,7 @@ To get started with KanutsananFX development, follow these steps:
 1.  Clone the repository:
 
     ```bash
-    git clone [repository-url]
+    git clone https://github.com/kanutsanan1988/KanutsananFX-Application.git
     cd KanutsananFX
     ```
 
@@ -94,12 +94,6 @@ To get started with KanutsananFX development, follow these steps:
 
     ```bash
     npm install
-    ```
-
-    Or using pnpm:
-
-    ```bash
-    pnpm install
     ```
 
 ## Running the App
@@ -113,56 +107,49 @@ To run the application in development mode:
     ```
 
 2.  Run on Android emulator/device:
-
-    ```bash
-    npm run android
-    ```
+    Press `a` in the terminal.
 
 3.  Run on iOS simulator/device:
+    Press `i` in the terminal.
 
+## Detailed Build Instructions (Android & iOS)
+
+This project uses **Expo Application Services (EAS)** for building installable binaries. You do NOT need a paid account to build for Android (APK) or iOS (Simulator).
+
+### 1. Prerequisites
+- Install EAS CLI: `npm install -g eas-cli`
+- Create a free account at [expo.dev](https://expo.dev)
+- Login: `eas login`
+
+### 2. Build for Android (.APK)
+To generate a standalone APK file that you can install on any Android phone:
+
+1.  Initialize EAS project: `eas build:configure`
+2.  Run the build command:
     ```bash
-    npm run ios
+    eas build --platform android --profile preview
     ```
+3.  Wait for the build to complete on Expo's cloud servers.
+4.  Once finished, a download link for the `.apk` file will be provided in the terminal and on your Expo dashboard.
 
-## Building for Android and iOS
+### 3. Build for iOS
+Building for iOS requires different approaches depending on your goal:
 
-Here are the commands to build the application for various platforms and purposes:
-
-*   **General Android Build (for preview)**:
-
+#### A. For iOS Simulator (No Apple Developer Account needed)
+1.  Run the build command:
     ```bash
-    npm run build:android
+    eas build --platform ios --profile preview --simulator
     ```
+2.  Download the resulting `.tar.gz` file.
+3.  Extract and drag the `.app` file into your Xcode Simulator.
 
-*   **Android Preview APK**: Generates an APK file for testing on Android devices.
-
+#### B. For Physical iOS Device (Requires Apple Developer Account)
+1.  Run the build command:
     ```bash
-    npm run build:android:apk
+    eas build --platform ios --profile preview
     ```
-
-*   **Android Production AAB**: Generates an Android App Bundle (AAB) for production release on Google Play Store.
-
-    ```bash
-    npm run build:android:production
-    ```
-
-*   **General iOS Build (for preview)**:
-
-    ```bash
-    npm run build:ios
-    ```
-
-*   **iOS Simulator Build**: Builds the app for the iOS simulator.
-
-    ```bash
-    npm run build:ios:simulator
-    ```
-
-*   **iOS Production Build**: Builds the app for production release on the Apple App Store.
-
-    ```bash
-    npm run build:ios:production
-    ```
+2.  Follow the prompts to sign in to your Apple Developer account and set up credentials.
+3.  Install the resulting `.ipa` file via [TestFlight](https://developer.apple.com/testflight/) or ad-hoc distribution.
 
 ## How to Use
 
