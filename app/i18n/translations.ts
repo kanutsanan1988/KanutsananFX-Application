@@ -1,260 +1,154 @@
-export type TranslationKey = keyof typeof th;
+import { TranslationKey } from './keys';
 
-const th = {
-  appName: 'KanutsananFX',
-  welcome: 'ยินดีต้อนรับสู่ KanutsananFX',
-  settings: 'ตั้งค่า',
-  chat: 'แชท AI',
-  trade: 'เทรด',
-  guide: 'คู่มือ',
-  developer: 'ผู้พัฒนา',
-  tradingSkills: 'ปรับแต่งสกิล',
-  
-  // Settings
-  metaApiSettings: 'ตั้งค่า MetaAPI',
-  accountId: 'Account ID',
-  apiKey: 'API Key',
-  aiBrainSettings: 'สมอง AI',
-  selectAiProvider: 'เลือกผู้ให้บริการ AI',
-  apiKeyPlaceholder: 'กรอก API Key',
-  save: 'บันทึก',
-  cancel: 'ยกเลิก',
-  connect: 'เชื่อมต่อ',
-  disconnect: 'ยกเลิกการเชื่อมต่อ',
-  connected: 'เชื่อมต่อแล้ว',
-  disconnected: 'ไม่ได้เชื่อมต่อ',
-  connectionSuccess: 'เชื่อมต่อสำเร็จ',
-  connectionFailed: 'เชื่อมต่อไม่สำเร็จ',
-  pleaseSetup: 'กรุณาตั้งค่า MetaAPI และสมอง AI ก่อนใช้งาน',
-  
-  // Trading commands
-  checkTrade: 'เช็คเทรด',
-  approveTrade: 'อนุมัติเทรด',
-  setAutoTrade: 'ตั้งเวลาเทรดอัตโนมัติ',
-  cancelAutoTrade: 'ยกเลิกการตั้งเวลาเทรด',
-  autoTrading: 'เทรดอัตโนมัติ',
-  tradingInterval: 'ช่วงเวลาเช็คเทรด',
-  selectPair: 'เลือกคู่เทรด',
-  
-  // Chat
-  typeMessage: 'พิมพ์ข้อความ...',
-  voiceInput: 'พูดคุยด้วยเสียง',
-  aiThinking: 'กำลังคิด...',
-  
-  // Guide
-  guideMetaApi: 'คู่มือ MetaAPI',
-  guideAiProvider: 'คู่มือผู้ให้บริการ AI',
-  guideTradingSkills: 'คู่มือปรับแต่งสกิล',
-  guideCommands: 'คู่มือเมนูและคำสั่ง',
-  
-  // Notifications
-  noInternet: 'ไม่มีการเชื่อมต่ออินเทอร์เน็ต',
-  setupRequired: 'กรุณาตั้งค่าก่อนใช้งาน',
-  close: 'ปิด',
-  
-  // Time intervals
-  seconds: 'วินาที',
-  minutes: 'นาที',
-  hours: 'ชั่วโมง',
-  
-  // Backup
-  backup: 'สำรองข้อมูล',
-  restore: 'กู้คืนข้อมูล',
-  backupToGDrive: 'สำรองข้อมูลไปยัง Google Drive',
-  restoreFromGDrive: 'กู้คืนข้อมูลจาก Google Drive',
-  
-  // Status
-  currentLlm: 'สมอง AI ที่ใช้งาน',
-  status: 'สถานะ',
-  
-  // Trading skills
-  autoCheckInterval: 'ช่วงเวลาเช็คอัตโนมัติ',
-  selectTradingPair: 'เลือกคู่เทรด',
-  loadingPairs: 'กำลังโหลดคู่เทรด...',
-};
+// Import all 42 language files
+import th from './locales/th';
+import en from './locales/en';
+import zh from './locales/zh';
+import zhTW from './locales/zhTW';
+import ja from './locales/ja';
+import ko from './locales/ko';
+import vi from './locales/vi';
+import id from './locales/id';
+import ms from './locales/ms';
+import fil from './locales/fil';
+import hi from './locales/hi';
+import bn from './locales/bn';
+import ta from './locales/ta';
+import te from './locales/te';
+import kn from './locales/kn';
+import ml from './locales/ml';
+import mr from './locales/mr';
+import gu from './locales/gu';
+import pa from './locales/pa';
+import ur from './locales/ur';
+import ar from './locales/ar';
+import he from './locales/he';
+import fa from './locales/fa';
+import tr from './locales/tr';
+import ru from './locales/ru';
+import uk from './locales/uk';
+import pl from './locales/pl';
+import cs from './locales/cs';
+import ro from './locales/ro';
+import hu from './locales/hu';
+import de from './locales/de';
+import fr from './locales/fr';
+import es from './locales/es';
+import pt from './locales/pt';
+import it from './locales/it';
+import nl from './locales/nl';
+import sv from './locales/sv';
+import no from './locales/no';
+import da from './locales/da';
+import fi from './locales/fi';
+import si from './locales/si';
+import ne from './locales/ne';
 
-const en: Record<TranslationKey, string> = {
-  appName: 'KanutsananFX',
-  welcome: 'Welcome to KanutsananFX',
-  settings: 'Settings',
-  chat: 'AI Chat',
-  trade: 'Trade',
-  guide: 'Guide',
-  developer: 'Developer',
-  tradingSkills: 'Trading Skills',
-  
-  metaApiSettings: 'MetaAPI Settings',
-  accountId: 'Account ID',
-  apiKey: 'API Key',
-  aiBrainSettings: 'AI Brain',
-  selectAiProvider: 'Select AI Provider',
-  apiKeyPlaceholder: 'Enter API Key',
-  save: 'Save',
-  cancel: 'Cancel',
-  connect: 'Connect',
-  disconnect: 'Disconnect',
-  connected: 'Connected',
-  disconnected: 'Disconnected',
-  connectionSuccess: 'Connection Successful',
-  connectionFailed: 'Connection Failed',
-  pleaseSetup: 'Please setup MetaAPI and AI Brain first',
-  
-  checkTrade: 'Check Trade',
-  approveTrade: 'Approve Trade',
-  setAutoTrade: 'Set Auto Trading',
-  cancelAutoTrade: 'Cancel Auto Trading',
-  autoTrading: 'Auto Trading',
-  tradingInterval: 'Trading Check Interval',
-  selectPair: 'Select Trading Pair',
-  
-  typeMessage: 'Type a message...',
-  voiceInput: 'Voice Input',
-  aiThinking: 'Thinking...',
-  
-  guideMetaApi: 'MetaAPI Guide',
-  guideAiProvider: 'AI Provider Guide',
-  guideTradingSkills: 'Trading Skills Guide',
-  guideCommands: 'Commands Guide',
-  
-  noInternet: 'No Internet Connection',
-  setupRequired: 'Setup Required',
-  close: 'Close',
-  
-  seconds: 'seconds',
-  minutes: 'minutes',
-  hours: 'hours',
-  
-  backup: 'Backup',
-  restore: 'Restore',
-  backupToGDrive: 'Backup to Google Drive',
-  restoreFromGDrive: 'Restore from Google Drive',
-  
-  currentLlm: 'Current AI Brain',
-  status: 'Status',
-  
-  autoCheckInterval: 'Auto Check Interval',
-  selectTradingPair: 'Select Trading Pair',
-  loadingPairs: 'Loading trading pairs...',
-};
+export type { TranslationKey };
 
-const ja: Record<TranslationKey, string> = {
-  appName: 'KanutsananFX',
-  welcome: 'KanutsananFXへようこそ',
-  settings: '設定',
-  chat: 'AIチャット',
-  trade: 'トレード',
-  guide: 'ガイド',
-  developer: '開発者',
-  tradingSkills: 'トレードスキル',
-  metaApiSettings: 'MetaAPI設定',
-  accountId: 'アカウントID',
-  apiKey: 'APIキー',
-  aiBrainSettings: 'AIブレイン',
-  selectAiProvider: 'AIプロバイダーを選択',
-  apiKeyPlaceholder: 'APIキーを入力',
-  save: '保存',
-  cancel: 'キャンセル',
-  connect: '接続',
-  disconnect: '切断',
-  connected: '接続済み',
-  disconnected: '未接続',
-  connectionSuccess: '接続成功',
-  connectionFailed: '接続失敗',
-  pleaseSetup: 'MetaAPIとAIブレインを先に設定してください',
-  checkTrade: 'トレードチェック',
-  approveTrade: 'トレード承認',
-  setAutoTrade: '自動トレード設定',
-  cancelAutoTrade: '自動トレードキャンセル',
-  autoTrading: '自動トレード',
-  tradingInterval: 'チェック間隔',
-  selectPair: '通貨ペア選択',
-  typeMessage: 'メッセージを入力...',
-  voiceInput: '音声入力',
-  aiThinking: '考え中...',
-  guideMetaApi: 'MetaAPIガイド',
-  guideAiProvider: 'AIプロバイダーガイド',
-  guideTradingSkills: 'トレードスキルガイド',
-  guideCommands: 'コマンドガイド',
-  noInternet: 'インターネット接続なし',
-  setupRequired: '設定が必要です',
-  close: '閉じる',
-  seconds: '秒',
-  minutes: '分',
-  hours: '時間',
-  backup: 'バックアップ',
-  restore: '復元',
-  backupToGDrive: 'Google Driveにバックアップ',
-  restoreFromGDrive: 'Google Driveから復元',
-  currentLlm: '使用中のAI',
-  status: 'ステータス',
-  autoCheckInterval: '自動チェック間隔',
-  selectTradingPair: '通貨ペアを選択',
-  loadingPairs: '通貨ペアを読み込み中...',
-};
+// All supported languages with metadata
+export interface LanguageInfo {
+  code: string;
+  nativeName: string;
+  englishName: string;
+  region: string;
+}
 
-const zh: Record<TranslationKey, string> = {
-  appName: 'KanutsananFX',
-  welcome: '欢迎使用KanutsananFX',
-  settings: '设置',
-  chat: 'AI聊天',
-  trade: '交易',
-  guide: '指南',
-  developer: '开发者',
-  tradingSkills: '交易技能',
-  metaApiSettings: 'MetaAPI设置',
-  accountId: '账户ID',
-  apiKey: 'API密钥',
-  aiBrainSettings: 'AI大脑',
-  selectAiProvider: '选择AI提供商',
-  apiKeyPlaceholder: '输入API密钥',
-  save: '保存',
-  cancel: '取消',
-  connect: '连接',
-  disconnect: '断开',
-  connected: '已连接',
-  disconnected: '未连接',
-  connectionSuccess: '连接成功',
-  connectionFailed: '连接失败',
-  pleaseSetup: '请先设置MetaAPI和AI大脑',
-  checkTrade: '检查交易',
-  approveTrade: '批准交易',
-  setAutoTrade: '设置自动交易',
-  cancelAutoTrade: '取消自动交易',
-  autoTrading: '自动交易',
-  tradingInterval: '检查间隔',
-  selectPair: '选择交易对',
-  typeMessage: '输入消息...',
-  voiceInput: '语音输入',
-  aiThinking: '思考中...',
-  guideMetaApi: 'MetaAPI指南',
-  guideAiProvider: 'AI提供商指南',
-  guideTradingSkills: '交易技能指南',
-  guideCommands: '命令指南',
-  noInternet: '无网络连接',
-  setupRequired: '需要设置',
-  close: '关闭',
-  seconds: '秒',
-  minutes: '分钟',
-  hours: '小时',
-  backup: '备份',
-  restore: '恢复',
-  backupToGDrive: '备份到Google Drive',
-  restoreFromGDrive: '从Google Drive恢复',
-  currentLlm: '当前AI',
-  status: '状态',
-  autoCheckInterval: '自动检查间隔',
-  selectTradingPair: '选择交易对',
-  loadingPairs: '加载交易对中...',
-};
+export const SUPPORTED_LANGUAGES: LanguageInfo[] = [
+  // Thai (default)
+  { code: 'th', nativeName: 'ไทย', englishName: 'Thai', region: 'Southeast Asia' },
+  // East Asia
+  { code: 'en', nativeName: 'English', englishName: 'English', region: 'Global' },
+  { code: 'zh', nativeName: '简体中文', englishName: 'Chinese (Simplified)', region: 'East Asia' },
+  { code: 'zh-TW', nativeName: '繁體中文', englishName: 'Chinese (Traditional)', region: 'East Asia' },
+  { code: 'ja', nativeName: '日本語', englishName: 'Japanese', region: 'East Asia' },
+  { code: 'ko', nativeName: '한국어', englishName: 'Korean', region: 'East Asia' },
+  // Southeast Asia
+  { code: 'vi', nativeName: 'Tiếng Việt', englishName: 'Vietnamese', region: 'Southeast Asia' },
+  { code: 'id', nativeName: 'Bahasa Indonesia', englishName: 'Indonesian', region: 'Southeast Asia' },
+  { code: 'ms', nativeName: 'Bahasa Melayu', englishName: 'Malay', region: 'Southeast Asia' },
+  { code: 'fil', nativeName: 'Filipino', englishName: 'Filipino', region: 'Southeast Asia' },
+  // South Asia
+  { code: 'hi', nativeName: 'हिन्दी', englishName: 'Hindi', region: 'South Asia' },
+  { code: 'bn', nativeName: 'বাংলা', englishName: 'Bengali', region: 'South Asia' },
+  { code: 'ta', nativeName: 'தமிழ்', englishName: 'Tamil', region: 'South Asia' },
+  { code: 'te', nativeName: 'తెలుగు', englishName: 'Telugu', region: 'South Asia' },
+  { code: 'kn', nativeName: 'ಕನ್ನಡ', englishName: 'Kannada', region: 'South Asia' },
+  { code: 'ml', nativeName: 'മലയാളം', englishName: 'Malayalam', region: 'South Asia' },
+  { code: 'mr', nativeName: 'मराठी', englishName: 'Marathi', region: 'South Asia' },
+  { code: 'gu', nativeName: 'ગુજરાતી', englishName: 'Gujarati', region: 'South Asia' },
+  { code: 'pa', nativeName: 'ਪੰਜਾਬੀ', englishName: 'Punjabi', region: 'South Asia' },
+  { code: 'ur', nativeName: 'اردو', englishName: 'Urdu', region: 'South Asia' },
+  { code: 'si', nativeName: 'සිංහල', englishName: 'Sinhala', region: 'South Asia' },
+  { code: 'ne', nativeName: 'नेपाली', englishName: 'Nepali', region: 'South Asia' },
+  // Middle East
+  { code: 'ar', nativeName: 'العربية', englishName: 'Arabic', region: 'Middle East' },
+  { code: 'he', nativeName: 'עברית', englishName: 'Hebrew', region: 'Middle East' },
+  { code: 'fa', nativeName: 'فارسی', englishName: 'Persian/Farsi', region: 'Middle East' },
+  { code: 'tr', nativeName: 'Türkçe', englishName: 'Turkish', region: 'Middle East' },
+  // Eastern Europe
+  { code: 'ru', nativeName: 'Русский', englishName: 'Russian', region: 'Eastern Europe' },
+  { code: 'uk', nativeName: 'Українська', englishName: 'Ukrainian', region: 'Eastern Europe' },
+  { code: 'pl', nativeName: 'Polski', englishName: 'Polish', region: 'Eastern Europe' },
+  { code: 'cs', nativeName: 'Čeština', englishName: 'Czech', region: 'Eastern Europe' },
+  { code: 'ro', nativeName: 'Română', englishName: 'Romanian', region: 'Eastern Europe' },
+  { code: 'hu', nativeName: 'Magyar', englishName: 'Hungarian', region: 'Eastern Europe' },
+  // Western Europe
+  { code: 'de', nativeName: 'Deutsch', englishName: 'German', region: 'Western Europe' },
+  { code: 'fr', nativeName: 'Français', englishName: 'French', region: 'Western Europe' },
+  { code: 'es', nativeName: 'Español', englishName: 'Spanish', region: 'Western Europe' },
+  { code: 'pt', nativeName: 'Português', englishName: 'Portuguese', region: 'Western Europe' },
+  { code: 'it', nativeName: 'Italiano', englishName: 'Italian', region: 'Western Europe' },
+  { code: 'nl', nativeName: 'Nederlands', englishName: 'Dutch', region: 'Western Europe' },
+  // Nordic
+  { code: 'sv', nativeName: 'Svenska', englishName: 'Swedish', region: 'Nordic' },
+  { code: 'no', nativeName: 'Norsk', englishName: 'Norwegian', region: 'Nordic' },
+  { code: 'da', nativeName: 'Dansk', englishName: 'Danish', region: 'Nordic' },
+  { code: 'fi', nativeName: 'Suomi', englishName: 'Finnish', region: 'Nordic' },
+];
 
+// Translation map
 export const translations: Record<string, Record<TranslationKey, string>> = {
-  th,
-  en,
-  ja,
-  zh,
+  th, en, zh,
+  'zh-TW': zhTW,
+  ja, ko, vi, id, ms, fil,
+  hi, bn, ta, te, kn, ml, mr, gu, pa, ur,
+  ar, he, fa, tr,
+  ru, uk, pl, cs, ro, hu,
+  de, fr, es, pt, it, nl,
+  sv, no, da, fi,
+  si, ne,
 };
 
+// Resolve device locale to supported language code
+export const resolveLocale = (deviceLocale: string): string => {
+  // Exact match first (e.g., "zh-TW")
+  if (translations[deviceLocale]) return deviceLocale;
+
+  // Try base language (e.g., "zh-TW" -> "zh")
+  const base = deviceLocale.split('-')[0].toLowerCase();
+  if (translations[base]) return base;
+
+  // Special mappings
+  const specialMap: Record<string, string> = {
+    'zh-hant': 'zh-TW',
+    'zh-hk': 'zh-TW',
+    'zh-mo': 'zh-TW',
+    'tl': 'fil',
+    'nb': 'no',
+    'nn': 'no',
+    'pt-br': 'pt',
+  };
+
+  const lower = deviceLocale.toLowerCase();
+  if (specialMap[lower]) return specialMap[lower];
+
+  // Fallback to Thai
+  return 'th';
+};
+
+// Get translation for a locale
 export const getTranslation = (locale: string): Record<TranslationKey, string> => {
-  const lang = locale.split('-')[0].toLowerCase();
-  return translations[lang] || translations['th'];
+  const resolvedLocale = resolveLocale(locale);
+  return translations[resolvedLocale] || translations['th'];
 };

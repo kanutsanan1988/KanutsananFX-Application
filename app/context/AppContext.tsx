@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getTranslation, TranslationKey } from '../i18n/translations';
+import { getTranslation, resolveLocale, TranslationKey } from '../i18n/translations';
 
 export type AiProvider = 'kanutsananfx' | 'openai' | 'anthropic' | 'gemini' | 'grok' | 'perplexity' | 'openrouter';
 
@@ -28,6 +28,7 @@ export interface ChatMessage {
 interface AppContextType {
   state: AppState;
   t: (key: TranslationKey) => string;
+  setLocale: (locale: string) => void;
   updateMetaApi: (accountId: string, apiKey: string) => Promise<boolean>;
   updateAiProvider: (provider: AiProvider, apiKey: string) => Promise<boolean>;
   setTradingPair: (pair: string) => void;
@@ -55,6 +56,26 @@ const defaultState: AppState = {
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
+// Detect device language
+const detectDeviceLocale = (): string => {
+  try {
+    // Try expo-localization if available
+    const ExpoLocalization = require('expo-localization');
+    if (ExpoLocalization?.getLocales) {
+      const locales = ExpoLocalization.getLocales();
+      if (locales && locales.length > 0) {
+        return resolveLocale(locales[0].languageTag || locales[0].languageCode || 'th');
+      }
+    }
+    if (ExpoLocalization?.locale) {
+      return resolveLocale(ExpoLocalization.locale);
+    }
+  } catch {
+    // Fallback
+  }
+  return 'th';
+};
+
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [state, setState] = useState<AppState>(defaultState);
 
@@ -68,6 +89,16 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       if (saved) {
         const parsed = JSON.parse(saved);
         setState(prev => ({ ...prev, ...parsed, isAutoTrading: false }));
+      } else {
+        // First launch: auto-detect device language
+        const detectedLocale = detectDeviceLocale();
+        setState(prev => ({ ...prev, locale: detectedLocale }));
+      }
+      // Load chat history
+      const chatSaved = await AsyncStorage.getItem('kanutsananfx_chat');
+      if (chatSaved) {
+        const chatHistory = JSON.parse(chatSaved);
+        setState(prev => ({ ...prev, chatHistory }));
       }
     } catch (e) {
       console.error('Failed to load state:', e);
@@ -93,9 +124,13 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     return trans[key] || key;
   }, [state.locale]);
 
+  const setLocale = (locale: string) => {
+    const resolved = resolveLocale(locale);
+    saveState({ locale: resolved });
+  };
+
   const updateMetaApi = async (accountId: string, apiKey: string): Promise<boolean> => {
     try {
-      // Validate by attempting connection
       const response = await fetch(`https://mt-client-api-v1.agiliumtrade.agiliumtrade.ai/users/current/accounts/${accountId}`, {
         headers: { 'auth-token': apiKey },
       });
@@ -161,6 +196,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       value={{
         state,
         t,
+        setLocale,
         updateMetaApi,
         updateAiProvider,
         setTradingPair,

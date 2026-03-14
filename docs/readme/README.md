@@ -1,56 +1,5 @@
 # KanutsananFX - Forex Trading AI Agent Application
 
-> Multilingual documentation is available in 42 languages. Select your preferred README below.
-
-
-| Language | File |
-|---|---|
-| Thai | [README.th.md](docs/readme/README.th.md) |
-| English (default) | [README.md](docs/readme/README.md) |
-| Chinese (Simplified) | [README.zh-CN.md](docs/readme/README.zh-CN.md) |
-| Chinese (Traditional) | [README.zh-TW.md](docs/readme/README.zh-TW.md) |
-| Japanese | [README.ja.md](docs/readme/README.ja.md) |
-| Korean | [README.ko.md](docs/readme/README.ko.md) |
-| Vietnamese | [README.vi.md](docs/readme/README.vi.md) |
-| Indonesian | [README.id.md](docs/readme/README.id.md) |
-| Malay | [README.ms.md](docs/readme/README.ms.md) |
-| Filipino | [README.fil.md](docs/readme/README.fil.md) |
-| Hindi | [README.hi.md](docs/readme/README.hi.md) |
-| Bengali | [README.bn.md](docs/readme/README.bn.md) |
-| Tamil | [README.ta.md](docs/readme/README.ta.md) |
-| Telugu | [README.te.md](docs/readme/README.te.md) |
-| Kannada | [README.kn.md](docs/readme/README.kn.md) |
-| Malayalam | [README.ml.md](docs/readme/README.ml.md) |
-| Marathi | [README.mr.md](docs/readme/README.mr.md) |
-| Gujarati | [README.gu.md](docs/readme/README.gu.md) |
-| Punjabi | [README.pa.md](docs/readme/README.pa.md) |
-| Urdu | [README.ur.md](docs/readme/README.ur.md) |
-| Arabic | [README.ar.md](docs/readme/README.ar.md) |
-| Hebrew | [README.he.md](docs/readme/README.he.md) |
-| Persian/Farsi | [README.fa.md](docs/readme/README.fa.md) |
-| Turkish | [README.tr.md](docs/readme/README.tr.md) |
-| Russian | [README.ru.md](docs/readme/README.ru.md) |
-| Ukrainian | [README.uk.md](docs/readme/README.uk.md) |
-| Polish | [README.pl.md](docs/readme/README.pl.md) |
-| Czech | [README.cs.md](docs/readme/README.cs.md) |
-| Romanian | [README.ro.md](docs/readme/README.ro.md) |
-| Hungarian | [README.hu.md](docs/readme/README.hu.md) |
-| German | [README.de.md](docs/readme/README.de.md) |
-| French | [README.fr.md](docs/readme/README.fr.md) |
-| Spanish | [README.es.md](docs/readme/README.es.md) |
-| Portuguese | [README.pt.md](docs/readme/README.pt.md) |
-| Italian | [README.it.md](docs/readme/README.it.md) |
-| Dutch | [README.nl.md](docs/readme/README.nl.md) |
-| Swedish | [README.sv.md](docs/readme/README.sv.md) |
-| Norwegian | [README.no.md](docs/readme/README.no.md) |
-| Danish | [README.da.md](docs/readme/README.da.md) |
-| Finnish | [README.fi.md](docs/readme/README.fi.md) |
-| Sinhala | [README.si.md](docs/readme/README.si.md) |
-| Nepali | [README.ne.md](docs/readme/README.ne.md) |
-
----
-# KanutsananFX - Forex Trading AI Agent Application
-
 ## Overview
 
 KanutsananFX is a powerful Forex trading AI Agent application designed for both **iOS and Android** platforms. Built with **Expo / React Native**, it offers a seamless cross-platform experience, allowing traders to manage their strategies and interact with an AI agent on their preferred mobile device.

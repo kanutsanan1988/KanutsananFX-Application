@@ -7,15 +7,21 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "scheme": "kanutsananfx",
+    "platforms": ["ios", "android"],
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#1a1a2e"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kanutsanan.fx"
+      "bundleIdentifier": "com.kanutsanan.fx",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "KanutsananFX uses the microphone for future voice chat features.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -23,10 +29,10 @@
         "backgroundColor": "#1a1a2e"
       },
       "package": "com.kanutsanan.fx",
+      "versionCode": 1,
       "permissions": ["INTERNET", "RECORD_AUDIO"]
     },
     "web": {
-      "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
     "plugins": [
